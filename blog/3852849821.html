@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    github |  Guoziren
+    hexo笔记 |  Guoziren
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -30,7 +30,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-github" class="article article-type-post" itemscope
+  <article id="post-hexo/hexo笔记" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -38,7 +38,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  github
+  hexo笔记
 </h1>
   
 
@@ -47,10 +47,14 @@
 
     
     <div class="article-meta">
-      <a href="/2020/09/20/github/" class="article-date">
-  <time datetime="2020-09-20T06:10:01.000Z" itemprop="datePublished">2020-09-20</time>
+      <a href="/blog/3852849821.html" class="article-date">
+  <time datetime="2020-09-20T11:54:08.140Z" itemprop="datePublished">2020-09-20</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/note/">笔记</a>
+  </div>
+
       
       
 <div class="word_count">
@@ -58,7 +62,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.2k字</span>
+            <span class="post-count">410字</span>
         </span>
     </span>
 
@@ -67,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -94,89 +98,68 @@
       
 
       
-      <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="git-init——初始化仓库"><a href="#git-init——初始化仓库" class="headerlink" title="git init——初始化仓库"></a>git init——初始化仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir git-tutorial</span><br><span class="line"></span><br><span class="line">$ cd git-tutorial</span><br><span class="line"></span><br><span class="line">$ git init</span><br><span class="line"></span><br><span class="line">Initialized empty Git repository in &#x2F;Users&#x2F;hirocaster&#x2F;github&#x2F;github-book</span><br><span class="line"></span><br><span class="line">&#x2F;git-tutorial&#x2F;.git&#x2F;</span><br></pre></td></tr></table></figure>
-
-<p>​        如果初始化成功，执行了 git init 命令的目录下就会生成 .git 目 录。这个 .git 目录里存储着管理当前目录内容所需的仓库数据。</p>
-<p>​        在 Git 中，我们将这个目录的内容称为“附属于该仓库的工作树”。 文件的编辑等操作在工作树中进行，然后记录到仓库中，以此管理文件 的历史快照。</p>
-<h4 id="git-status——查看仓库的状态"><a href="#git-status——查看仓库的状态" class="headerlink" title="git status——查看仓库的状态"></a>git status——查看仓库的状态</h4><p>所谓提交 （Commit），是指“记录工作树中所有文件的当前状态”。</p>
-<p>git fetch  = pull(远端仓库，可以是别人的仓库) + merge本地分支   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin     &#x2F;&#x2F;origin是 git remote add ...添加的</span><br></pre></td></tr></table></figure>
-
-<p>merge</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout master &#x2F;&#x2F;切换到master分支</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;为了在历史记录中明确记录下本次分支合 并，我们需要创建合并提交。因此，在合并时加上 --no-ff 参数。</span><br><span class="line">git merge --no-ff feature-A  &#x2F;&#x2F; 合并feature-A到merge</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<p>pull </p>
-<p>git push :  推送到远程仓库</p>
-<p>rebase</p>
-<p>git clone</p>
-<p>git add 文件    提交到暂存区</p>
-<p>git commit -m描述：       提交到本地仓库</p>
-<ul>
-<li>-m</li>
-<li>-am</li>
-<li>–amend</li>
-</ul>
-<p>git status 查看状态</p>
-<p>在远程仓库中也创建 develop 分支</p>
-<p>开发者要时刻注意，对分支进行任何操作之前都必须先执行 pull 获 取最新代码，修改完毕后应尽快进行 push 操作，保证 GitHub 端远程仓 库内的代码为最新状态。</p>
-<p>GitHub 端的远程仓库为 remotes/origin</p>
-<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;查看</span><br><span class="line">git branch : 显示本地分支一览表</span><br><span class="line">git branch -r : 查看远程仓库的分支</span><br><span class="line">git branch -a : 查看本地和远程仓库的所有分支</span><br><span class="line">&#x2F;&#x2F;创建</span><br><span class="line">git checkout -b 分支名 ：以当前分支为基础，创建切换分支</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;切换</span><br><span class="line">git checkout master: 切换到master分支</span><br><span class="line">git checkout - : 切换回上一个分支</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git checkout -b 本地分支名 origin&#x2F;远程分支名:</span><br><span class="line">		将远程git仓库里的指定分支拉取到本地（本地不存在的分支）</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;删除</span><br><span class="line">git branch -d bug_xzx 删除本地的bug_xzx分支</span><br><span class="line">git push origin --delete bug_xzx  删除远程的bug_xzx分支</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="二、push操作"><a href="#二、push操作" class="headerlink" title="二、push操作"></a>二、push操作</h3><p>1、将本地当前分支 推送到 远程指定分支上（注意：pull是远程在前本地在后，push相反）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br></pre></td></tr></table></figure>
-
-<p>2、将本地当前分支 推送到 与本地当前分支同名的远程分支上（注意：pull是远程在前本地在后，push相反）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;本地分支名&gt;</span><br></pre></td></tr></table></figure>
-
-
-<p>3、将本地当前分支 推送到 与本地当前分支同名的远程分支上(需先关联远程分支，方法见文章末尾)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push同样的，推荐使用第2种方式，git push origin &lt;远程同名分支名&gt;</span><br></pre></td></tr></table></figure>
+      <h2 id="layout-post-、draft-和-page的区别"><a href="#layout-post-、draft-和-page的区别" class="headerlink" title="layout:  post 、draft 和 page的区别"></a>layout:  post 、draft 和 page的区别</h2><p>1.路径不同</p>
+<p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p>
+<table>
+<thead>
+<tr>
+<th align="left">布局</th>
+<th align="left">路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>post</code></td>
+<td align="left"><code>source/_posts</code></td>
+</tr>
+<tr>
+<td align="left"><code>page</code></td>
+<td align="left"><code>source</code></td>
+</tr>
+<tr>
+<td align="left"><code>draft</code></td>
+<td align="left"><code>source/_drafts</code></td>
+</tr>
+</tbody></table>
+<p>2.作用不同</p>
+<p>page生成的页面用于导航，post是文章</p>
+<h2 id="标签和分类没有内容"><a href="#标签和分类没有内容" class="headerlink" title="标签和分类没有内容"></a>标签和分类没有内容</h2><p><code>source/tags/index.md</code>中 下面应为layout 而不是 tags，同理分类处也是layout</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title: 标签</span><br><span class="line">date: 2020-09-20 19:19:19</span><br><span class="line">layout: &quot;tags&quot;</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-<p>git diff</p>
-<p>不妨养成这样一个好习惯：在执行 git commit 命令之前先执行 <code>git diff HEAD</code> 命令，查看本次提交与上次提交之间有什么差别，等 确认完毕后再进行提交。这里的 HEAD 是指向当前分支中最新一次提交 的指针。</p>
-<p>取消刚刚所有添加进暂存区的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git restore --staged .</span><br></pre></td></tr></table></figure>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 
-<p>取消添加进暂存区的某个文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git restore --staged &lt;file&gt;</span><br></pre></td></tr></table></figure>
+<p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new &quot;post title with whitespace&quot;</span><br></pre></td></tr></table></figure>
 
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-p</code>, <code>--path</code></td>
+<td align="left">自定义新文章的路径</td>
+</tr>
+<tr>
+<td align="left"><code>-r</code>, <code>--replace</code></td>
+<td align="left">如果存在同名文章，将其替换</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code>, <code>--slug</code></td>
+<td align="left">文章的 Slug，作为新文章的文件名和发布后的 URL</td>
+</tr>
+</tbody></table>
+<p>默认情况下，Hexo 会使用文章的标题来决定文章文件的路径。对于独立页面来说，Hexo 会创建一个以标题为名字的目录，并在目录中放置一个 <code>index.md</code> 文件。你可以使用 <code>--path</code> 参数来覆盖上述行为、自行决定文件的目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page --path about&#x2F;me &quot;About me&quot;</span><br></pre></td></tr></table></figure>
 
-
-<p>查看远程仓库的地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
-
-<p>设置新的远程仓库地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin git@github.com:****&#x2F;*****-client-5.git</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><h4 id="1-查看远程仓库"><a href="#1-查看远程仓库" class="headerlink" title="1.查看远程仓库"></a>1.查看远程仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote 查看远程仓库的名字</span><br><span class="line">git remote -v 显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-添加远程仓库"><a href="#2-添加远程仓库" class="headerlink" title="2.添加远程仓库"></a>2.添加远程仓库</h4><h5 id="2-1自动添加"><a href="#2-1自动添加" class="headerlink" title="2.1自动添加"></a>2.1自动添加</h5><p>git clone https:…..会自动添加远程仓库 并命名远程仓库名为origin.</p>
-<h5 id="2-2手动添加"><a href="#2-2手动添加" class="headerlink" title="2.2手动添加"></a>2.2手动添加</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add &lt;shortname&gt; &lt;url&gt;</span><br><span class="line">eg:$ git remote add pb https:&#x2F;&#x2F;github.com&#x2F;paulboone&#x2F;ticgit</span><br></pre></td></tr></table></figure>
-
-<p>之后可以在命令行中使用字符串 <code>pb</code> 来代替整个 URL</p>
-<blockquote>
-<p>什么是origin    : 如果你已经克隆了自己的仓库，那么至少应该能看到 origin ——这是 Git 给你克隆的仓库服务器的默认名字：</p>
-</blockquote>
-<h4 id="3-从远程仓库中抓取与拉取"><a href="#3-从远程仓库中抓取与拉取" class="headerlink" title="3.从远程仓库中抓取与拉取"></a>3.从远程仓库中抓取与拉取</h4><blockquote>
-<p><a href="https://git-scm.com/book/zh/v2/Git-基础-远程仓库的使用" target="_blank" rel="noopener">https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8</a></p>
-</blockquote>
-<p>git pull 根据配置的不同，可为git fetch + git merge 或 git fetch + git rebase</p>
-<p><img src="https://gzr-blog.oss-cn-shanghai.aliyuncs.com/uPic/image-20200826162749286_2020-09-20_14:09:42.png" alt="image-20200826162749286"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 将远程主机的master分支最新内容拉下来后与当前本地分支直接合并</span><br><span class="line">git  pull origin master </span><br><span class="line"># git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line">git pull origin master:feature-wxDemo  </span><br><span class="line"></span><br><span class="line"># 将远程主机的最新内容拉到本地，不进行合并</span><br><span class="line">git fetch origin master</span><br></pre></td></tr></table></figure>
-
-
+<p>以上命令会创建一个 <code>source/about/me.md</code> 文件，同时 Front Matter 中的 title 为 <code>&quot;About me&quot;</code></p>
+<p>注意！title 是必须指定的！如果你这么做并不能达到你的目的：</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
       
       <!-- reward -->
       
@@ -245,14 +228,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://blts.asia/2020/09/20/github/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://blts.asia/blog/3852849821.html" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
 
 
     </footer>
@@ -263,10 +246,19 @@
   
   <nav class="article-nav">
     
+      <a href="/blog/3878378061.html" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            hexo进阶功能
+          
+        </div>
+      </a>
     
-      <a href="/2020/03/15/test-my-site/" class="article-nav-link">
+    
+      <a href="/blog/1669114857.html" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">test_my_site</div>
+        <div class="article-nav-title">github</div>
       </a>
     
   </nav>
@@ -339,7 +331,7 @@
     <ul class="list-inline">
       <li>
         &copy;
-        2015-2020
+        2020
         Guo zi ren
       </li>
       <li>
