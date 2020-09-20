@@ -466,23 +466,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="git-init——初始化仓库"><a href="#git-init——初始化仓库" class="headerlink" title="git init——初始化仓库"></a>git init——初始化仓库</h4><pre><code>$ mkdir git-tutorial
+                <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="git-init——初始化仓库"><a href="#git-init——初始化仓库" class="headerlink" title="git init——初始化仓库"></a>git init——初始化仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir git-tutorial</span><br><span class="line"></span><br><span class="line">$ cd git-tutorial</span><br><span class="line"></span><br><span class="line">$ git init</span><br><span class="line"></span><br><span class="line">Initialized empty Git repository in &#x2F;Users&#x2F;hirocaster&#x2F;github&#x2F;github-book</span><br><span class="line"></span><br><span class="line">&#x2F;git-tutorial&#x2F;.git&#x2F;</span><br></pre></td></tr></table></figure>
 
-$ cd git-tutorial
-
-$ git init
-
-Initialized empty Git repository in /Users/hirocaster/github/github-book
-
-/git-tutorial/.git/</code></pre><p>​        如果初始化成功，执行了 git init 命令的目录下就会生成 .git 目 录。这个 .git 目录里存储着管理当前目录内容所需的仓库数据。</p>
+<p>​        如果初始化成功，执行了 git init 命令的目录下就会生成 .git 目 录。这个 .git 目录里存储着管理当前目录内容所需的仓库数据。</p>
 <p>​        在 Git 中，我们将这个目录的内容称为“附属于该仓库的工作树”。 文件的编辑等操作在工作树中进行，然后记录到仓库中，以此管理文件 的历史快照。</p>
 <h4 id="git-status——查看仓库的状态"><a href="#git-status——查看仓库的状态" class="headerlink" title="git status——查看仓库的状态"></a>git status——查看仓库的状态</h4><p>所谓提交 （Commit），是指“记录工作树中所有文件的当前状态”。</p>
 <p>git fetch  = pull(远端仓库，可以是别人的仓库) + merge本地分支   </p>
-<pre><code>git fetch origin     //origin是 git remote add ...添加的</code></pre><p>merge</p>
-<pre><code>git checkout master //切换到master分支
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin     &#x2F;&#x2F;origin是 git remote add ...添加的</span><br></pre></td></tr></table></figure>
 
-//为了在历史记录中明确记录下本次分支合 并，我们需要创建合并提交。因此，在合并时加上 --no-ff 参数。
-git merge --no-ff feature-A  // 合并feature-A到merge</code></pre><p>pull </p>
+<p>merge</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout master &#x2F;&#x2F;切换到master分支</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;为了在历史记录中明确记录下本次分支合 并，我们需要创建合并提交。因此，在合并时加上 --no-ff 参数。</span><br><span class="line">git merge --no-ff feature-A  &#x2F;&#x2F; 合并feature-A到merge</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>pull </p>
 <p>git push :  推送到远程仓库</p>
 <p>rebase</p>
 <p>git clone</p>
@@ -497,38 +496,48 @@ git merge --no-ff feature-A  // 合并feature-A到merge</code></pre><p>pull </p>
 <p>在远程仓库中也创建 develop 分支</p>
 <p>开发者要时刻注意，对分支进行任何操作之前都必须先执行 pull 获 取最新代码，修改完毕后应尽快进行 push 操作，保证 GitHub 端远程仓 库内的代码为最新状态。</p>
 <p>GitHub 端的远程仓库为 remotes/origin</p>
-<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><pre><code>//查看
-git branch : 显示本地分支一览表
-git branch -r : 查看远程仓库的分支
-git branch -a : 查看本地和远程仓库的所有分支
-//创建
-git checkout -b 分支名 ：以当前分支为基础，创建切换分支
-
-//切换
-git checkout master: 切换到master分支
-git checkout - : 切换回上一个分支
+<h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;查看</span><br><span class="line">git branch : 显示本地分支一览表</span><br><span class="line">git branch -r : 查看远程仓库的分支</span><br><span class="line">git branch -a : 查看本地和远程仓库的所有分支</span><br><span class="line">&#x2F;&#x2F;创建</span><br><span class="line">git checkout -b 分支名 ：以当前分支为基础，创建切换分支</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;切换</span><br><span class="line">git checkout master: 切换到master分支</span><br><span class="line">git checkout - : 切换回上一个分支</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">git checkout -b 本地分支名 origin&#x2F;远程分支名:</span><br><span class="line">		将远程git仓库里的指定分支拉取到本地（本地不存在的分支）</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;删除</span><br><span class="line">git branch -d bug_xzx 删除本地的bug_xzx分支</span><br><span class="line">git push origin --delete bug_xzx  删除远程的bug_xzx分支</span><br></pre></td></tr></table></figure>
 
 
-git checkout -b 本地分支名 origin/远程分支名:
-        将远程git仓库里的指定分支拉取到本地（本地不存在的分支）
 
-//删除
-git branch -d bug_xzx 删除本地的bug_xzx分支
-git push origin --delete bug_xzx  删除远程的bug_xzx分支
+<h3 id="二、push操作"><a href="#二、push操作" class="headerlink" title="二、push操作"></a>二、push操作</h3><p>1、将本地当前分支 推送到 远程指定分支上（注意：pull是远程在前本地在后，push相反）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;本地分支名&gt;:&lt;远程分支名&gt;</span><br></pre></td></tr></table></figure>
 
-</code></pre><h3 id="二、push操作"><a href="#二、push操作" class="headerlink" title="二、push操作"></a>二、push操作</h3><p>1、将本地当前分支 推送到 远程指定分支上（注意：pull是远程在前本地在后，push相反）：</p>
-<pre><code>git push origin &lt;本地分支名&gt;:&lt;远程分支名&gt;</code></pre><p>2、将本地当前分支 推送到 与本地当前分支同名的远程分支上（注意：pull是远程在前本地在后，push相反）：</p>
-<pre><code>git push origin &lt;本地分支名&gt;</code></pre><p>3、将本地当前分支 推送到 与本地当前分支同名的远程分支上(需先关联远程分支，方法见文章末尾)</p>
-<pre><code>git push同样的，推荐使用第2种方式，git push origin &lt;远程同名分支名&gt;</code></pre><p>git diff</p>
+<p>2、将本地当前分支 推送到 与本地当前分支同名的远程分支上（注意：pull是远程在前本地在后，push相反）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;本地分支名&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>3、将本地当前分支 推送到 与本地当前分支同名的远程分支上(需先关联远程分支，方法见文章末尾)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push同样的，推荐使用第2种方式，git push origin &lt;远程同名分支名&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>git diff</p>
 <p>不妨养成这样一个好习惯：在执行 git commit 命令之前先执行 <code>git diff HEAD</code> 命令，查看本次提交与上次提交之间有什么差别，等 确认完毕后再进行提交。这里的 HEAD 是指向当前分支中最新一次提交 的指针。</p>
 <p>取消刚刚所有添加进暂存区的</p>
-<pre><code>git restore --staged .</code></pre><p>取消添加进暂存区的某个文件</p>
-<pre><code>git restore --staged &lt;file&gt;</code></pre><p>查看远程仓库的地址</p>
-<pre><code>git remote -v</code></pre><p>设置新的远程仓库地址</p>
-<pre><code>git remote set-url origin git@github.com:****/*****-client-5.git</code></pre><h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><h4 id="1-查看远程仓库"><a href="#1-查看远程仓库" class="headerlink" title="1.查看远程仓库"></a>1.查看远程仓库</h4><pre><code>git remote 查看远程仓库的名字
-git remote -v 显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL</code></pre><h4 id="2-添加远程仓库"><a href="#2-添加远程仓库" class="headerlink" title="2.添加远程仓库"></a>2.添加远程仓库</h4><h5 id="2-1自动添加"><a href="#2-1自动添加" class="headerlink" title="2.1自动添加"></a>2.1自动添加</h5><p>git clone https:…..会自动添加远程仓库 并命名远程仓库名为origin.</p>
-<h5 id="2-2手动添加"><a href="#2-2手动添加" class="headerlink" title="2.2手动添加"></a>2.2手动添加</h5><pre><code> git remote add &lt;shortname&gt; &lt;url&gt;
- eg:$ git remote add pb https://github.com/paulboone/ticgit</code></pre><p>之后可以在命令行中使用字符串 <code>pb</code> 来代替整个 URL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git restore --staged .</span><br></pre></td></tr></table></figure>
+
+<p>取消添加进暂存区的某个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git restore --staged &lt;file&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看远程仓库的地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+
+<p>设置新的远程仓库地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin git@github.com:****&#x2F;*****-client-5.git</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><h4 id="1-查看远程仓库"><a href="#1-查看远程仓库" class="headerlink" title="1.查看远程仓库"></a>1.查看远程仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote 查看远程仓库的名字</span><br><span class="line">git remote -v 显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-添加远程仓库"><a href="#2-添加远程仓库" class="headerlink" title="2.添加远程仓库"></a>2.添加远程仓库</h4><h5 id="2-1自动添加"><a href="#2-1自动添加" class="headerlink" title="2.1自动添加"></a>2.1自动添加</h5><p>git clone https:…..会自动添加远程仓库 并命名远程仓库名为origin.</p>
+<h5 id="2-2手动添加"><a href="#2-2手动添加" class="headerlink" title="2.2手动添加"></a>2.2手动添加</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add &lt;shortname&gt; &lt;url&gt;</span><br><span class="line">eg:$ git remote add pb https:&#x2F;&#x2F;github.com&#x2F;paulboone&#x2F;ticgit</span><br></pre></td></tr></table></figure>
+
+<p>之后可以在命令行中使用字符串 <code>pb</code> 来代替整个 URL</p>
 <blockquote>
 <p>什么是origin    : 如果你已经克隆了自己的仓库，那么至少应该能看到 origin ——这是 Git 给你克隆的仓库服务器的默认名字：</p>
 </blockquote>
@@ -537,14 +546,9 @@ git remote -v 显示需要读写远程仓库使用的 Git 保存的简写与其�
 </blockquote>
 <p>git pull 根据配置的不同，可为git fetch + git merge 或 git fetch + git rebase</p>
 <p><img src="https://gzr-blog.oss-cn-shanghai.aliyuncs.com/uPic/image-20200826162749286_2020-09-20_14:09:42.png" alt="image-20200826162749286"></p>
-<pre><code># 将远程主机的master分支最新内容拉下来后与当前本地分支直接合并
-git  pull origin master 
-# git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;
-git pull origin master:feature-wxDemo  
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 将远程主机的master分支最新内容拉下来后与当前本地分支直接合并</span><br><span class="line">git  pull origin master </span><br><span class="line"># git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</span><br><span class="line">git pull origin master:feature-wxDemo  </span><br><span class="line"></span><br><span class="line"># 将远程主机的最新内容拉到本地，不进行合并</span><br><span class="line">git fetch origin master</span><br></pre></td></tr></table></figure>
 
-# 将远程主机的最新内容拉到本地，不进行合并
-git fetch origin master
-</code></pre>
+
             </div>
             <hr/>
 
@@ -1088,13 +1092,13 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">
-    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+    <a href="https://github.com/234917515" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
         <i class="fab fa-github"></i>
     </a>
 
 
 
-    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+    <a href="mailto:234917515@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
         <i class="fas fa-envelope-open"></i>
     </a>
 
@@ -1104,7 +1108,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
 
 
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=234917515" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 234917515" data-position="top" data-delay="50">
         <i class="fab fa-qq"></i>
     </a>
 
