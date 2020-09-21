@@ -1,0 +1,1552 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="For Offer/Android/事件分发机制, Guoziren`s World">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>For Offer/Android/事件分发机制 | Guoziren`s World</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Guoziren`s World</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Guoziren`s World</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">For Offer/Android/事件分发机制</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-26
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/0feff0b4.png" alt=""><br><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/f09c9732.png" alt=""><br><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/93f8ddd7.png" alt="">  </p>
+<p><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/0eefdc9b.png" alt="">  </p>
+<ol>
+<li><p>onClick 和 onTouch都会打印吗<br>事件分发开始会走到这里View.dispatchTouchEvent()-&gt;<br>li.mOnTouchListener.onTouch(this, event)-&gt;<br>false的话-&gt;onTouchEvent(event)-&gt;case MotionEvent.ACTION_UP-&gt;<br>performClick();-&gt; li.mOnClickListener.onClick(this);</p>
+<p>所onTouch返回false时会执行onClick,true则不会<br><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/8bb0d5c9.png" alt="">  </p>
+</li>
+</ol>
+<p><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/image-20200426160519980.png" alt="image-20200426160519980"></p>
+<p>ViewPager包含Listview  </p>
+<ol>
+<li>onInterceptTouchEvent返回true时 为什么只能左右滑动 不能上下滑</li>
+</ol>
+<p>onInterceptTouchEvent 返回true不会问下面了，直接处理 消费掉，</p>
+<p>return false 才会传给下面.</p>
+<ol start="2">
+<li>onInterceptTouchEvent返回true时 为什么只能上下滑动 不能左右滑</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>Activity<span class="token punctuation">.</span>java<span class="token punctuation">]</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>MotionEvent ev<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ev<span class="token punctuation">.</span><span class="token function">getAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> MotionEvent<span class="token punctuation">.</span>ACTION_DOWN<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">onUserInteraction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">getWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">superDispatchTouchEvent</span><span class="token punctuation">(</span>ev<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token function">onTouchEvent</span><span class="token punctuation">(</span>ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>Activity<span class="token punctuation">.</span>java<span class="token punctuation">]</span>  
+<span class="token keyword">public</span> Window <span class="token function">getWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mWindow<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">private</span> Window mWindow<span class="token punctuation">;</span></code></pre>
+<p>Window只有唯一的实现类PhoneWindow</p>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>Window<span class="token punctuation">.</span>java<span class="token punctuation">]</span>
+The only existing implementation of <span class="token keyword">this</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">is</span>
+ <span class="token operator">*</span> android<span class="token punctuation">.</span>view<span class="token punctuation">.</span>PhoneWindow<span class="token punctuation">,</span> which you should instantiate when needing a
+ <span class="token operator">*</span> Window<span class="token punctuation">.</span>
+ <span class="token operator">*</span><span class="token operator">/</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Window</span> <span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>PhoneWindow<span class="token punctuation">.</span>java<span class="token punctuation">]</span>
+<span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">superDispatchTouchEvent</span><span class="token punctuation">(</span>MotionEvent event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mDecor<span class="token punctuation">.</span><span class="token function">superDispatchTouchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// This is the top-level view of the window, containing the window decor.</span>
+    <span class="token keyword">private</span> DecorView mDecor<span class="token punctuation">;</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>DecorView<span class="token punctuation">.</span>java<span class="token punctuation">]</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DecorView</span> <span class="token keyword">extends</span> <span class="token class-name">FrameLayout</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">superDispatchTrackballEvent</span><span class="token punctuation">(</span>MotionEvent event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p><code>FrameLayout</code>没有重写<code>dispatchTouchEvent</code>，接下来，直接到了</p>
+<ol>
+<li><code>disallowIntercept</code>：是否禁用掉拦截，可以通过<code>requestDisallowInterceptTouchEvent(boolean disallowIntercept)</code>请求不拦截</li>
+<li>先走ViewGroup的<code>onInterceptTouchEvent</code>，默认返回false  </li>
+<li>ViewGroup不拦截的话，分发事件，怎么分发的？<ol>
+<li><code>buildTouchDispatchChildList()：</code>根据Z值对它的子view 进行排序,返回一个ArrayList</li>
+<li>遍历判断<ol>
+<li><code>canViewReceivePointerEvents</code>：是否能够接收点击事件</li>
+<li><code>isTransformedTouchPointInView</code>:点击事件是否在点击的view区域中</li>
+<li><code>dispatchTransformedTouchEvent</code>分发调用child.dispatchTouchEvent, 这里child如果是ViewGroup，相当于这里递归调用了VIewGroup的dispatchTouchEvent；向下传递的过程中，如果拦截/响应了事件则终止向下传递，并返回给父，父也不用处理了</li>
+<li>拦截/响应事件后设置参数<ol>
+<li><code>newTouchTarget = addTouchTarget(child,) = mFirstTouchTarget;</code></li>
+<li><code>alreadyDispatchedToNewTouchTarget = true</code></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>ViewGroup<span class="token punctuation">.</span>java<span class="token punctuation">]</span>
+ <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>MotionEvent ev<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+         <span class="token comment" spellcheck="true">// Check for interception.</span>
+            <span class="token keyword">final</span> <span class="token keyword">boolean</span> intercepted<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>actionMasked <span class="token operator">==</span> MotionEvent<span class="token punctuation">.</span>ACTION_DOWN
+                    <span class="token operator">||</span> mFirstTouchTarget <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">final</span> <span class="token keyword">boolean</span> disallowIntercept <span class="token operator">=</span> <span class="token punctuation">(</span>mGroupFlags <span class="token operator">&amp;</span> FLAG_DISALLOW_INTERCEPT<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>disallowIntercept<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    intercepted <span class="token operator">=</span> <span class="token function">onInterceptTouchEvent</span><span class="token punctuation">(</span>ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    ev<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>action<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// restore action in case it was changed</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    intercepted <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// There are no touch targets and this action is not an initial down</span>
+                <span class="token comment" spellcheck="true">// so this view group continues to intercept touches.</span>
+                intercepted <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+      <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        <span class="token comment" spellcheck="true">//2.事件分发  </span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>canceled <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>intercepted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                <span class="token comment" spellcheck="true">// If the event is targeting accessiiblity focus we give it to the</span>
+                <span class="token comment" spellcheck="true">// view that has accessibility focus and if it does not handle it</span>
+                <span class="token comment" spellcheck="true">// we clear the flag and dispatch the event to all children as usual.</span>
+                <span class="token comment" spellcheck="true">// We are looking up the accessibility focused host to avoid keeping</span>
+                <span class="token comment" spellcheck="true">// state since these events are very rare.</span>
+                View childWithAccessibilityFocus <span class="token operator">=</span> ev<span class="token punctuation">.</span><span class="token function">isTargetAccessibilityFocus</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        <span class="token operator">?</span> <span class="token function">findChildWithAccessibilityFocus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> null<span class="token punctuation">;</span>
+
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>actionMasked <span class="token operator">==</span> MotionEvent<span class="token punctuation">.</span>ACTION_DOWN
+                        <span class="token operator">||</span> <span class="token punctuation">(</span>split <span class="token operator">&amp;&amp;</span> actionMasked <span class="token operator">==</span> MotionEvent<span class="token punctuation">.</span>ACTION_POINTER_DOWN<span class="token punctuation">)</span>
+                        <span class="token operator">||</span> actionMasked <span class="token operator">==</span> MotionEvent<span class="token punctuation">.</span>ACTION_HOVER_MOVE<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">final</span> <span class="token keyword">int</span> actionIndex <span class="token operator">=</span> ev<span class="token punctuation">.</span><span class="token function">getActionIndex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// always 0 for down</span>
+                    <span class="token keyword">final</span> <span class="token keyword">int</span> idBitsToAssign <span class="token operator">=</span> split <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> ev<span class="token punctuation">.</span><span class="token function">getPointerId</span><span class="token punctuation">(</span>actionIndex<span class="token punctuation">)</span>
+                            <span class="token operator">:</span> TouchTarget<span class="token punctuation">.</span>ALL_POINTER_IDS<span class="token punctuation">;</span>
+
+                    <span class="token comment" spellcheck="true">// Clean up earlier touch targets for this pointer id in case they</span>
+                    <span class="token comment" spellcheck="true">// have become out of sync.</span>
+                    <span class="token function">removePointersFromTouchTargets</span><span class="token punctuation">(</span>idBitsToAssign<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                    <span class="token keyword">final</span> <span class="token keyword">int</span> childrenCount <span class="token operator">=</span> mChildrenCount<span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>newTouchTarget <span class="token operator">==</span> null <span class="token operator">&amp;&amp;</span> childrenCount <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token keyword">final</span> <span class="token keyword">float</span> x <span class="token operator">=</span> ev<span class="token punctuation">.</span><span class="token function">getX</span><span class="token punctuation">(</span>actionIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">final</span> <span class="token keyword">float</span> y <span class="token operator">=</span> ev<span class="token punctuation">.</span><span class="token function">getY</span><span class="token punctuation">(</span>actionIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token comment" spellcheck="true">// Find a child that can receive the event.</span>
+                        <span class="token comment" spellcheck="true">// Scan children from front to back.</span>
+                        <span class="token keyword">final</span> ArrayList<span class="token operator">&lt;</span>View<span class="token operator">></span> preorderedList <span class="token operator">=</span> <span class="token function">buildTouchDispatchChildList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">final</span> <span class="token keyword">boolean</span> customOrder <span class="token operator">=</span> preorderedList <span class="token operator">==</span> null
+                                <span class="token operator">&amp;&amp;</span> <span class="token function">isChildrenDrawingOrderEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">final</span> View<span class="token punctuation">[</span><span class="token punctuation">]</span> children <span class="token operator">=</span> mChildren<span class="token punctuation">;</span>
+                        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> childrenCount <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            <span class="token keyword">final</span> <span class="token keyword">int</span> childIndex <span class="token operator">=</span> <span class="token function">getAndVerifyPreorderedIndex</span><span class="token punctuation">(</span>
+                                    childrenCount<span class="token punctuation">,</span> i<span class="token punctuation">,</span> customOrder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token keyword">final</span> View child <span class="token operator">=</span> <span class="token function">getAndVerifyPreorderedView</span><span class="token punctuation">(</span>
+                                    preorderedList<span class="token punctuation">,</span> children<span class="token punctuation">,</span> childIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                            <span class="token comment" spellcheck="true">// If there is a view that has accessibility focus we want it</span>
+                            <span class="token comment" spellcheck="true">// to get the event first and if not handled we will perform a</span>
+                            <span class="token comment" spellcheck="true">// normal dispatch. We may do a double iteration but this is</span>
+                            <span class="token comment" spellcheck="true">// safer given the timeframe.</span>
+                           <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+                            <span class="token keyword">if</span> <span class="token punctuation">(</span>newTouchTarget <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                <span class="token comment" spellcheck="true">// Child is already receiving touch within its bounds.</span>
+                                <span class="token comment" spellcheck="true">// Give it the new pointer in addition to the ones it is handling.</span>
+                                newTouchTarget<span class="token punctuation">.</span>pointerIdBits <span class="token operator">|=</span> idBitsToAssign<span class="token punctuation">;</span>
+                                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>
+
+                            <span class="token function">resetCancelNextUpFlag</span><span class="token punctuation">(</span>child<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">dispatchTransformedTouchEvent</span><span class="token punctuation">(</span>ev<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> child<span class="token punctuation">,</span> idBitsToAssign<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                <span class="token comment" spellcheck="true">// Child wants to receive touch within its bounds.</span>
+                                mLastTouchDownTime <span class="token operator">=</span> ev<span class="token punctuation">.</span><span class="token function">getDownTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                <span class="token keyword">if</span> <span class="token punctuation">(</span>preorderedList <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                    <span class="token comment" spellcheck="true">// childIndex points into presorted list, find original index</span>
+                                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> childrenCount<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                        <span class="token keyword">if</span> <span class="token punctuation">(</span>children<span class="token punctuation">[</span>childIndex<span class="token punctuation">]</span> <span class="token operator">==</span> mChildren<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                            mLastTouchDownIndex <span class="token operator">=</span> j<span class="token punctuation">;</span>
+                                            <span class="token keyword">break</span><span class="token punctuation">;</span>
+                                        <span class="token punctuation">}</span>
+                                    <span class="token punctuation">}</span>
+                                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                                    mLastTouchDownIndex <span class="token operator">=</span> childIndex<span class="token punctuation">;</span>
+                                <span class="token punctuation">}</span>
+                                mLastTouchDownX <span class="token operator">=</span> ev<span class="token punctuation">.</span><span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                mLastTouchDownY <span class="token operator">=</span> ev<span class="token punctuation">.</span><span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                newTouchTarget <span class="token operator">=</span> <span class="token function">addTouchTarget</span><span class="token punctuation">(</span>child<span class="token punctuation">,</span> idBitsToAssign<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                alreadyDispatchedToNewTouchTarget <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                                <span class="token keyword">break</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>
+
+                            <span class="token comment" spellcheck="true">// The accessibility focus didn't handle the event, so clear</span>
+                            <span class="token comment" spellcheck="true">// the flag and do a normal dispatch to all children.</span>
+                            ev<span class="token punctuation">.</span><span class="token function">setTargetAccessibilityFocus</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>preorderedList <span class="token operator">!=</span> null<span class="token punctuation">)</span> preorderedList<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>newTouchTarget <span class="token operator">==</span> null <span class="token operator">&amp;&amp;</span> mFirstTouchTarget <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token comment" spellcheck="true">// Did not find a child to receive the event.</span>
+                        <span class="token comment" spellcheck="true">// Assign the pointer to the least recently added target.</span>
+                        newTouchTarget <span class="token operator">=</span> mFirstTouchTarget<span class="token punctuation">;</span>
+                        <span class="token keyword">while</span> <span class="token punctuation">(</span>newTouchTarget<span class="token punctuation">.</span>next <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            newTouchTarget <span class="token operator">=</span> newTouchTarget<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                        newTouchTarget<span class="token punctuation">.</span>pointerIdBits <span class="token operator">|=</span> idBitsToAssign<span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+      ·················  
+       <span class="token comment" spellcheck="true">// Dispatch to touch targets.</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>mFirstTouchTarget <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// No touch targets so treat this as an ordinary view.</span>
+                handled <span class="token operator">=</span> <span class="token function">dispatchTransformedTouchEvent</span><span class="token punctuation">(</span>ev<span class="token punctuation">,</span> canceled<span class="token punctuation">,</span> null<span class="token punctuation">,</span>
+                        TouchTarget<span class="token punctuation">.</span>ALL_POINTER_IDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>                                                
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>          
+    <span class="token punctuation">}</span></code></pre>
+<p><code>dispatchTransformedTouchEvent</code>是对事件的分发或者处理:</p>
+<ul>
+<li><p>返回值变量handled: false表示无人处理，true表示activity处理了</p>
+</li>
+<li><p>(拦截的话走到这里)child == null时，调用<code>view</code>的<code>dispatchTouchEvent</code>(),就是转到View的事件处理,处理就返回true,赋值给handled变量作为<code>dispatchTransformedTouchEvent</code>的返回值，true表示;</p>
+</li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">dispatchTransformedTouchEvent</span><span class="token punctuation">(</span>MotionEvent event<span class="token punctuation">,</span> <span class="token keyword">boolean</span> cancel<span class="token punctuation">,</span>
+            View child<span class="token punctuation">,</span> <span class="token keyword">int</span> desiredPointerIdBits<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token keyword">boolean</span> handled<span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// Canceling motions is a special case.  We don't need to perform any transformations</span>
+        <span class="token comment" spellcheck="true">// or filtering.  The important part is the action, not the contents.</span>
+        <span class="token keyword">final</span> <span class="token keyword">int</span> oldAction <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cancel <span class="token operator">||</span> oldAction <span class="token operator">==</span> MotionEvent<span class="token punctuation">.</span>ACTION_CANCEL<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            event<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>MotionEvent<span class="token punctuation">.</span>ACTION_CANCEL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>child <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                handled <span class="token operator">=</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                handled <span class="token operator">=</span> child<span class="token punctuation">.</span><span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            event<span class="token punctuation">.</span><span class="token function">setAction</span><span class="token punctuation">(</span>oldAction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> handled<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// Calculate the number of pointers to deliver.</span>
+        <span class="token keyword">final</span> <span class="token keyword">int</span> oldPointerIdBits <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">getPointerIdBits</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">final</span> <span class="token keyword">int</span> newPointerIdBits <span class="token operator">=</span> oldPointerIdBits <span class="token operator">&amp;</span> desiredPointerIdBits<span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// If for some reason we ended up in an inconsistent state where it looks like we</span>
+        <span class="token comment" spellcheck="true">// might produce a motion event with no pointers in it, then drop the event.</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>newPointerIdBits <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// If the number of pointers is the same and we don't need to perform any fancy</span>
+        <span class="token comment" spellcheck="true">// irreversible transformations, then we can reuse the motion event for this</span>
+        <span class="token comment" spellcheck="true">// dispatch as long as we are careful to revert any changes we make.</span>
+        <span class="token comment" spellcheck="true">// Otherwise we need to make a copy.</span>
+        <span class="token keyword">final</span> MotionEvent transformedEvent<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>newPointerIdBits <span class="token operator">==</span> oldPointerIdBits<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>child <span class="token operator">==</span> null <span class="token operator">||</span> child<span class="token punctuation">.</span><span class="token function">hasIdentityMatrix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>child <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    handled <span class="token operator">=</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">final</span> <span class="token keyword">float</span> offsetX <span class="token operator">=</span> mScrollX <span class="token operator">-</span> child<span class="token punctuation">.</span>mLeft<span class="token punctuation">;</span>
+                    <span class="token keyword">final</span> <span class="token keyword">float</span> offsetY <span class="token operator">=</span> mScrollY <span class="token operator">-</span> child<span class="token punctuation">.</span>mTop<span class="token punctuation">;</span>
+                    event<span class="token punctuation">.</span><span class="token function">offsetLocation</span><span class="token punctuation">(</span>offsetX<span class="token punctuation">,</span> offsetY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                    handled <span class="token operator">=</span> child<span class="token punctuation">.</span><span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                    event<span class="token punctuation">.</span><span class="token function">offsetLocation</span><span class="token punctuation">(</span><span class="token operator">-</span>offsetX<span class="token punctuation">,</span> <span class="token operator">-</span>offsetY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> handled<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            transformedEvent <span class="token operator">=</span> MotionEvent<span class="token punctuation">.</span><span class="token function">obtain</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            transformedEvent <span class="token operator">=</span> event<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span>newPointerIdBits<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// Perform any necessary transformations and dispatch.</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>child <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            handled <span class="token operator">=</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>transformedEvent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">final</span> <span class="token keyword">float</span> offsetX <span class="token operator">=</span> mScrollX <span class="token operator">-</span> child<span class="token punctuation">.</span>mLeft<span class="token punctuation">;</span>
+            <span class="token keyword">final</span> <span class="token keyword">float</span> offsetY <span class="token operator">=</span> mScrollY <span class="token operator">-</span> child<span class="token punctuation">.</span>mTop<span class="token punctuation">;</span>
+            transformedEvent<span class="token punctuation">.</span><span class="token function">offsetLocation</span><span class="token punctuation">(</span>offsetX<span class="token punctuation">,</span> offsetY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span> child<span class="token punctuation">.</span><span class="token function">hasIdentityMatrix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                transformedEvent<span class="token punctuation">.</span><span class="token function">transform</span><span class="token punctuation">(</span>child<span class="token punctuation">.</span><span class="token function">getInverseMatrix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            handled <span class="token operator">=</span> child<span class="token punctuation">.</span><span class="token function">dispatchTouchEvent</span><span class="token punctuation">(</span>transformedEvent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// Done.</span>
+        transformedEvent<span class="token punctuation">.</span><span class="token function">recycle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> handled<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>第一个是Down事件</p>
+<p>再来是Move事件，会沿着(前面形成的事件分发链)销售链走  </p>
+<p>怎么沿着销售链走的？  </p>
+<ol>
+<li>Move事件照样会走到Activity …ViewGroup的<code>dispatchTouchEvent</code>，还是有拦截事件的权利</li>
+<li>此时 mFirstTouchTarget != null </li>
+<li>如果第2步不拦截, 会走到<code>dispatchTransformedTouchEvent(ev,cancelChild,targe.child,..)</code>,target是自己，然后(递归)去分发</li>
+</ol>
+<p>当销售链形成后，11号有什么权利？底层才对上层有反向制约的权利，通过对<code>disallowIntercept</code>(是否不允许拦截)布尔变量设置</p>
+<p>1.<code>onInterceptTouchEvent</code>返回true就是对事件的拦截(ViewGroup是经销商?)，如果<code>disallowIntercept=true</code>,则ViewPager中<code>onInterceptTouchEvent</code>返回true也没用。</p>
+<pre class=" language-java"><code class="language-java"><span class="token punctuation">[</span>ViewGroup<span class="token punctuation">.</span>java<span class="token punctuation">]</span> 
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">onInterceptTouchEvent</span><span class="token punctuation">(</span>MotionEvent ev<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ev<span class="token punctuation">.</span><span class="token function">isFromSource</span><span class="token punctuation">(</span>InputDevice<span class="token punctuation">.</span>SOURCE_MOUSE<span class="token punctuation">)</span>
+                <span class="token operator">&amp;&amp;</span> ev<span class="token punctuation">.</span><span class="token function">getAction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> MotionEvent<span class="token punctuation">.</span>ACTION_DOWN
+                <span class="token operator">&amp;&amp;</span> ev<span class="token punctuation">.</span><span class="token function">isButtonPressed</span><span class="token punctuation">(</span>MotionEvent<span class="token punctuation">.</span>BUTTON_PRIMARY<span class="token punctuation">)</span>
+                <span class="token operator">&amp;&amp;</span> <span class="token function">isOnScrollbarThumb</span><span class="token punctuation">(</span>ev<span class="token punctuation">.</span><span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ev<span class="token punctuation">.</span><span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>2.<code>requestDisallowInterceptTouchEvent(boolean disallowIntercept)</code>请求不拦截</p>
+<ul>
+<li><p>ViewPager包裹ListView时，让ViewPager不拦截</p>
+<p>在ListView中重写如下方法，</p>
+<ul>
+<li>ACTION_MOVE时即左右滑动时，viewPager拦截</li>
+<li>ACTION_DOWN时，上下滑动时，viewPager不拦截</li>
+</ul>
+<p>![image-20200426115035531](.事件分发机制_images/image-20200426115035531.png</p>
+<p><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/image-20200426115150064.png" alt="image-20200426115150064"></p>
+</li>
+</ul>
+<ol start="3">
+<li>销售链的形成需要经历完ACTION_DOWN，如果父view在形成之前拦截了则销售链就只到父view  </li>
+</ol>
+<p>实际上任何2个view叠加在一起都会产生冲突。</p>
+<p><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/image-20200426120917813.png" alt="image-20200426120917813"></p>
+<p>View的事件处理，<code>dispatchTouchEvent</code>-&gt;<code>onTouch</code>-&gt;<code>onTouchEvent</code></p>
+<ol>
+<li>onTouch和onTouchEvent有什么区别，又该如何使用？</li>
+</ol>
+<p>从源码中可以看出，这两个方法都是在View的dispatchTouchEvent中调用的，onTouch优先于onTouchEvent执行。如果在onTouch方法中通过返回true将事件消费掉，onTouchEvent将不会再执行。</p>
+<p>另外需要注意的是，onTouch能够得到执行需要两个前提条件，第一mOnTouchListener的值不能为空，第二当前点击的控件必须是enable的。因此如果你有一个控件是非enable的，那么给它注册onTouch事件将永远得不到执行。对于这一类控件，如果我们想要监听它的touch事件，就必须通过在该控件中重写onTouchEvent方法来实现。</p>
+<ol start="2">
+<li>为什么给ListView引入了一个滑动菜单的功能，ListView就不能滚动了？</li>
+</ol>
+<p>如果你阅读了Android滑动框架完全解析，教你如何一分钟实现滑动菜单特效这篇文章，你应该会知道滑动菜单的功能是通过给ListView注册了一个touch事件来实现的。如果你在onTouch方法里处理完了滑动逻辑后返回true，那么ListView本身的滚动事件就被屏蔽了，自然也就无法滑动(原理同前面例子中按钮不能点击)，因此解决办法就是在onTouch方法里返回false。</p>
+<p><strong>Android中touch事件的传递，绝对是先传递到ViewGroup，再传递到View的。</strong></p>
+<p>总结：</p>
+<ol>
+<li><p>Android事件分发机制分为View和ViewGroup的事件分发和处理，是从ViewGroup传给view的</p>
+</li>
+<li><p>其中View的会调用onTouch()方法，如果返回true，表示这个事件被他消费掉。则onClick不会执行，点击事件失效</p>
+</li>
+<li><p>ViewGroup的</p>
+<p>​    1. 首先看他自己是否要拦截，可重写onInterceptTouchEvent中，返回true表示拦截，不会向下传递，默认是返回false，也可通过<code>requestDisallowInterceptTouchEvent(true)</code>请求禁用掉拦截.该开关优先于onInterceptTouchEvent</p>
+<p>​    2. 如果不拦截，则遍历它的子view，递归分发事件，一旦某一层消费掉，就往上回传结果，但父view也就不再能处理。</p>
+</li>
+</ol>
+<p>再举几个例子：</p>
+<p>layout中2个button,layout的onInterceptTouchEvent返回true,则button的click事件失效。</p>
+<h3 id="Android开发艺术探索-事件分发"><a href="#Android开发艺术探索-事件分发" class="headerlink" title="Android开发艺术探索-事件分发"></a>Android开发艺术探索-事件分发</h3><h4 id="1-位置参数"><a href="#1-位置参数" class="headerlink" title="1.位置参数"></a>1.位置参数</h4><p>View的位置主要由它的4个顶点来决定，对应View的四个属性:top,left,right,bottom</p>
+<p>从3.0开始，</p>
+<pre><code>新增x,y是View左上角的坐标，
+
+translationX和translationY是View左上角相对于父容器的偏移量
+x = left + translationX;
+y = top + translationY;
+注：View在平移过程中，top和left表示的是原始左上角的位置信息不会改变，此时改变的是新增的4个参数</code></pre><h4 id="2-MotionEvent和TouchSlop"><a href="#2-MotionEvent和TouchSlop" class="headerlink" title="2.MotionEvent和TouchSlop"></a>2.MotionEvent和TouchSlop</h4><h4 id="3-VelocityTracker、GestureDetector和Scroller"><a href="#3-VelocityTracker、GestureDetector和Scroller" class="headerlink" title="3.VelocityTracker、GestureDetector和Scroller"></a>3.VelocityTracker、GestureDetector和Scroller</h4><h5 id="Scroller"><a href="#Scroller" class="headerlink" title="Scroller"></a>Scroller</h5><p>用于实现View的弹性滑动.</p>
+<p>View的滑动</p>
+<p>4.View的事件分发机制</p>
+<p>4.1 点击事件的传递规则</p>
+<p>所谓点击事件的事件分发，就是对MotionEvent事件的分发过程,由三个很重要的方法来共同完成.</p>
+<p><code>public boolean dispatchTouchEvent(MotionEvent ev).</code></p>
+<p>用来进行事件的分发,返回是否消耗当前事件.</p>
+<p><code>public boolean onIntecerptTouchEvent(MotionEvent event)</code></p>
+<p>上面方法中的方法,用来判断是否拦截某个事件(ViewGroup 中源码默认返回false表示不拦截)</p>
+<p><code>public boolean onTouchEvent(MotionEvent event)</code></p>
+<p>在<code>dispatchTouchEvent</code>方法中调用，用来处理点击事件,返回是否消耗当前事件，如果不消耗，则在同一个事件序列中，当前View无法再次接收到事件.</p>
+<p>ViewGroup</p>
+<p>关于拦截</p>
+<p>1.requestDisallowInterceptTouchEvent() 请求禁用拦截</p>
+<p>一般用于子View中调用父view的这个方法，让父view不再拦截除了ACTION_DOWN以外的点击事件。</p>
+<p>当面对<code>ACTION_DOWN</code>事件时，ViewGroup总是会调用自己的onIntecerptTouchEvent询问自己是否拦截事件.</p>
+<p>2.当ViewGroup决定拦截事件后，后续的点击事件(不包括<code>ACTION_DOWN</code>)将会默认交给它处理并且不再问自己是否拦截. </p>
+<p>3.onIntecerptTouchEvent()不是每次都会调用，如果想提前处理所有的点击事件，要选择dispatchTouchEvent,前提当然是事件能传到当前的ViewGroup.</p>
+<p>分发（不拦截时）</p>
+<p>事件分发交给它的子View进行处理，怎么分发？</p>
+<p>1.循环遍历ViewGroup的所有孩子，交给能接收点击事件(点击事件的坐标是否落在子元素内)的孩子进行处理(dispatchTouchEvent分发)。</p>
+<p>2.如果孩子消耗掉这个事件(dispatchTouchEvent返回true)，mFirstTouchTarget被赋值并终止循环;</p>
+<p>   反之，则交给它的下一个孩子进行处理</p>
+<p>3,如果遍历所有的子元素后事件都没有被合适地处理(消耗)，两种情况</p>
+<ul>
+<li>没有孩子</li>
+<li>所有孩子处理了但是dispatchTouchEvent中返回了false(没消耗)</li>
+</ul>
+<p>mFirstTouchTarget就为null,因为没有赋值。ViewGroup会自己处理点击事件（super.dispatchTouchEvent(event)这里是View的方法，没有拦截，没有分发），进入View的点击事件处理</p>
+<p>为什么mFirstTouchTarget为null ，ViewGroup就默认拦截接下来同一序列中的所有点击事件.??</p>
+<p>因为</p>
+<pre><code>if(事件是ACTION_DOWN || mFirstTouchTarget != null){
+        先看是否禁用掉了拦截，判断是否拦截
+}else{
+   intercepted = true;
+}</code></pre><p>View对点击事件的处理</p>
+<p>onTouch（设置了触摸监听器时）  优先于onTouchEvent;</p>
+<p>ACTION_UP发生时，会触发performclick方法，内部会调用它的onClick方法;</p>
+<p>View的dispatchTouchEvent方法中的switch 对ACTION的分别处理最后都是返回true,表示消耗事件</p>
+<h3 id="View的滑动冲突？"><a href="#View的滑动冲突？" class="headerlink" title="View的滑动冲突？"></a>View的滑动冲突？</h3><h4 id="1-什么是滑动冲突？"><a href="#1-什么是滑动冲突？" class="headerlink" title="1.什么是滑动冲突？"></a>1.什么是滑动冲突？</h4><p>​    在界面中只要内外两层同时可以滑动，这个时候就会产生滑动冲突。</p>
+<h4 id="2-三种场景"><a href="#2-三种场景" class="headerlink" title="2.三种场景"></a>2.三种场景</h4><ul>
+<li>父View和子View滑动方向不一致</li>
+<li>父View和子View滑动方向一致(系统无法知道让哪一层滑动,卡顿或者只有1层能滑动)</li>
+<li>上面两种的嵌套</li>
+</ul>
+<h4 id="3-处理规则"><a href="#3-处理规则" class="headerlink" title="3.处理规则"></a>3.处理规则</h4><ul>
+<li>场景1：用户左右滑动时，让父View拦截touch事件,上下滑动时，子View拦截/消耗touch事件;根据他们的特征解决滑动冲突。如何判断是竖直还是水平滑动？</li>
+<li>场景2：无法根据滑动的角度，距离差（滑动规则），以及速度差来判断，这个时候一般能在业务上找到突破点</li>
+<li>场景3：同样是从业务上找突破点</li>
+</ul>
+<blockquote>
+<p>不管多复杂的滑动冲突，他们之间的区别仅仅是滑动规则不同而已。</p>
+</blockquote>
+<pre class=" language-csharp"><code class="language-csharp"><span class="token comment" spellcheck="true">/**
+  * 分析1：onUserInteraction()
+  * 作用：实现屏保功能
+  * 注：
+  *    a. 该方法为空方法
+  *    b. 当此activity在栈顶时，触屏点击按home，back，menu键等都会触发此方法
+  */</span>
+      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onUserInteraction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+
+      <span class="token punctuation">}</span></code></pre>
+<pre class=" language-csharp"><code class="language-csharp">b<span class="token punctuation">.</span> DecorView继承自FrameLayout，是所有界面的父类
+  <span class="token operator">*</span>     c<span class="token punctuation">.</span> FrameLayout是ViewGroup的子类，故DecorView的间接父类 <span class="token operator">=</span> ViewGroup</code></pre>
+<h4 id="如果viewgroup不拦截事件-那么哪些子view可以接收到事件"><a href="#如果viewgroup不拦截事件-那么哪些子view可以接收到事件" class="headerlink" title="如果viewgroup不拦截事件, 那么哪些子view可以接收到事件"></a>如果viewgroup不拦截事件, 那么哪些子view可以接收到事件</h4><p>if (!canViewReceivePointerEvents(child)<br>|| !isTransformedTouchPointInView(x, y, child, null)) {<br>ev.setTargetAccessibilityFocus(false);<br>continue;<br>}<br>ViewGroup通过判断所有的子View是否可见是否在播放动画和是否在点击范围内来决定它是否能够有资格接受事件。只有满足条件的child才能够调用dispatch。</p>
+<h3 id="Activity对点击事件的分发机制"><a href="#Activity对点击事件的分发机制" class="headerlink" title="Activity对点击事件的分发机制"></a><code>Activity</code>对点击事件的分发机制</h3><h3 id="ViewGroup对点击事件的分发机制"><a href="#ViewGroup对点击事件的分发机制" class="headerlink" title="ViewGroup对点击事件的分发机制"></a><code>ViewGroup</code>对点击事件的分发机制</h3><h3 id="View对点击事件的分发机制"><a href="#View对点击事件的分发机制" class="headerlink" title="View对点击事件的分发机制"></a><code>View</code>对点击事件的分发机制</h3><h5 id="场景一-点击如图的空白区域"><a href="#场景一-点击如图的空白区域" class="headerlink" title="场景一 点击如图的空白区域"></a>场景一 点击如图的空白区域</h5><p><img src=".%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6_images/image-20200717235536395.png" alt="image-20200717235536395"></p>
+<pre><code>W/DemoSocketActivity: dispatchTouchEvent: ACTION_DOWN
+W/MyLinearLayout: dispatchTouchEvent: ACTION_DOWN
+W/MyLinearLayout: onInterceptTouchEvent: ACTION_DOWN
+E/MyLinearLayout: onInterceptTouchEvent: ACTION_DOWN  false
+W/MyLinearLayout: onTouchEvent: ACTION_DOWN
+E/MyLinearLayout: onTouchEvent: ACTION_DOWN  false
+E/MyLinearLayout: dispatchTouchEvent: ACTION_DOWN  false
+W/DemoSocketActivity: dispatchTouchEvent: ACTION_DOWNfalse
+W/DemoSocketActivity: dispatchTouchEvent: ACTION_UP
+W/DemoSocketActivity: dispatchTouchEvent: ACTION_UPfalse</code></pre><p>没有ACTION_UP事件是因为MyLinearLayout没处理，MyLinearLayout默认是不可点击的。</p>
+<h5 id="点击测试按钮"><a href="#点击测试按钮" class="headerlink" title="点击测试按钮"></a>点击测试按钮</h5><pre><code>W/DemoSocketActivity: dispatchTouchEvent: ACTION_DOWN
+W/MyLinearLayout: dispatchTouchEvent: ACTION_DOWN
+W/MyLinearLayout: onInterceptTouchEvent: ACTION_DOWN
+E/MyLinearLayout: onInterceptTouchEvent: ACTION_DOWN  false
+W/MyButton: dispatchTouchEvent: ACTION_DOWN
+W/MyButton: onTouchEvent: ACTION_DOWN
+E/MyButton: onTouchEvent: ACTION_DOWN  true
+E/MyButton: dispatchTouchEvent: ACTION_DOWN  true
+E/MyLinearLayout: dispatchTouchEvent: ACTION_DOWN  true
+W/DemoSocketActivity: dispatchTouchEvent: ACTION_DOWNtrue
+W/DemoSocketActivity: dispatchTouchEvent: ACTION_UP
+W/MyLinearLayout: dispatchTouchEvent: ACTION_UP
+W/MyLinearLayout: onInterceptTouchEvent: ACTION_UP
+E/MyLinearLayout: onInterceptTouchEvent: ACTION_UP  false
+W/MyButton: dispatchTouchEvent: ACTION_UP
+W/MyButton: onTouchEvent: ACTION_UP
+E/MyButton: onTouchEvent: ACTION_UP  true
+E/MyButton: dispatchTouchEvent: ACTION_UP  true
+E/MyLinearLayout: dispatchTouchEvent: ACTION_UP  true
+W/DemoSocketActivity: dispatchTouchEvent: ACTION_UPtrue</code></pre><p>onTouchEvent返回true是因为Button是可点击的</p>
+<h2 id="背诵版总结"><a href="#背诵版总结" class="headerlink" title="背诵版总结"></a>背诵版总结</h2><p>从手指接触屏幕 至 手指离开屏幕，这个过程产生的一系列事件。一般情况下，事件列都是以<code>DOWN</code>事件开始、<code>UP</code>事件结束，中间有无数的MOVE事件。事件分发指的是 将点击事件（MotionEvent）传递到某个具体的<code>View</code> &amp; 处理的整个过程。</p>
+<p>事件在哪些对象之间进行传递？</p>
+<p><strong>答：Activity、ViewGroup、View</strong></p>
+<h3 id="事件分发过程主要由3个方法协作完成。"><a href="#事件分发过程主要由3个方法协作完成。" class="headerlink" title="事件分发过程主要由3个方法协作完成。"></a>事件分发过程主要由3个方法协作完成。</h3><p>*<em>dispatchTouchEvent() *</em>：事件分发</p>
+<p><strong>onInterceptTouchEvent()</strong>：拦截事件</p>
+<p><strong>和onTouchEvent()</strong>:处理事件</p>
+<h3 id="分发从3个方面讲"><a href="#分发从3个方面讲" class="headerlink" title="分发从3个方面讲"></a>分发从3个方面讲</h3><h4 id="1-Activity-对点击事件的分发机制"><a href="#1-Activity-对点击事件的分发机制" class="headerlink" title="1.Activity`对点击事件的分发机制"></a>1.Activity`对点击事件的分发机制</h4><p>当一个点击事件发生时，事件最先传到<code>Activity</code>的<code>dispatchTouchEvent()</code>进行事件分发</p>
+<h4 id="2-ViewGroup-对点击事件的分发机制"><a href="#2-ViewGroup-对点击事件的分发机制" class="headerlink" title="2.ViewGroup`对点击事件的分发机制"></a>2.ViewGroup`对点击事件的分发机制</h4><p>先看自己是否拦截，默认可以认为不拦截。一旦拦截，那么这个事件序列（如果事件序列能够传递的话）都只能由它来处理，并且它的onInterceptTouchEvent不再调用,</p>
+<p>遍历ViewGroup的所有子元素，判断子元素是否能够接收到点击事件。主要由：子元素是否在播放动画和点击事件的坐标是否落在子元素的区域内。</p>
+<h4 id="3-View-对点击事件的分发机制"><a href="#3-View-对点击事件的分发机制" class="headerlink" title="3.View`对点击事件的分发机制"></a>3.View`对点击事件的分发机制</h4><p>某个View一旦开始处理事件，如果它不消耗ACTION_DOWN事件(onTouchEvent 返回了false),那么同一事件序列中的其他事件都不会再交给它来处理，并且事件将重新交由它的父容器去处理。</p>
+<p>View的onTouchEvent默认都会消耗事件，除非它是不可点击的。</p>
+<p>如何设置了有onTouchListener，且onTouch返回true表示消耗了事件，则不会调用onTouchEvent方法。</p>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Bailitusu</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://blts.asia/blog/150980626.html">http://blts.asia/blog/150980626.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Bailitusu</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="https://gzr-blog.oss-cn-shanghai.aliyuncs.com/uPic/1600304779621_2020-09-20_20:57:52.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="https://gzr-blog.oss-cn-shanghai.aliyuncs.com/uPic/mm_reward_qrcode_1600606512599_2020-09-20_20:56:56.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/blog/2775131548.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="For Offer/面经/字节跳动/字节跳动">
+                        
+                        <span class="card-title">For Offer/面经/字节跳动/字节跳动</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Bailitusu
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/blog/320856030.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="For Offer/设计模式/Android架构">
+                        
+                        <span class="card-title">For Offer/设计模式/Android架构</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Bailitusu
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Bailitusu</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/234917515" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:234917515@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=234917515" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 234917515" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>

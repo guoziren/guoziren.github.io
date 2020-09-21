@@ -305,6 +305,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -471,16 +484,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="进阶功能"><a href="#进阶功能" class="headerlink" title="进阶功能"></a>进阶功能</h2><h3 id="abbrlink生成唯一永久文章链接"><a href="#abbrlink生成唯一永久文章链接" class="headerlink" title="abbrlink生成唯一永久文章链接"></a>abbrlink生成唯一永久文章链接</h3><h4 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1.安装插件"></a>1.安装插件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
-
+                <h2 id="进阶功能"><a href="#进阶功能" class="headerlink" title="进阶功能"></a>进阶功能</h2><h3 id="abbrlink生成唯一永久文章链接"><a href="#abbrlink生成唯一永久文章链接" class="headerlink" title="abbrlink生成唯一永久文章链接"></a>abbrlink生成唯一永久文章链接</h3><h4 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1.安装插件"></a>1.安装插件</h4><pre class=" language-js"><code class="language-js">npm install hexo<span class="token operator">-</span>abbrlink <span class="token operator">--</span>save</code></pre>
 <blockquote>
 <p>执行此命令可能会不成功，提示你缺少相应的依赖<br> 比如<code>babel-eslint</code>、<code>mini-css-extract-plugin</code>、<code>webpack-cli</code>…<br> 使用npm命令安装即可，比如<code>npm install eslint@4.x babel-eslint@8 --save-dev</code></p>
 </blockquote>
 <h4 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h4><p>修改根目录配置文件<code>config.yml</code>，改为：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">permalink: blog/:abbrlink.html  # 也可以直接使用 :/abbrlink</span><br><span class="line">abbrlink:</span><br><span class="line">    alg: crc32   #算法： crc16(default) and crc32</span><br><span class="line">    rep: hex     #进制： dec(default) and hex</span><br></pre></td></tr></table></figure>
-
-
-
+<pre class=" language-js"><code class="language-js">permalink<span class="token punctuation">:</span> blog<span class="token operator">/</span><span class="token punctuation">:</span>abbrlink<span class="token punctuation">.</span>html  # 也可以直接使用 <span class="token punctuation">:</span><span class="token operator">/</span>abbrlink
+abbrlink<span class="token punctuation">:</span>
+    alg<span class="token punctuation">:</span> crc32   #算法： <span class="token function">crc16</span><span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span> and crc32
+    rep<span class="token punctuation">:</span> hex     #进制： <span class="token function">dec</span><span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span> and hex</code></pre>
 <p>生成完后，原<code>md</code>文件的Front-matter(就是— —中间的内容) 内会增加<code>abbrlink</code> 字段，值为生成的ID 。这个字段确保了在我们修改了Front-matter 内的博客标题title或创建日期date字段之后而不会改变链接地址。</p>
 
             </div>
