@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>hexo进阶功能</title>
+    <link href="/2020/09/20/hexo/hexo%E8%BF%9B%E9%98%B6%E5%8A%9F%E8%83%BD/"/>
+    <url>/2020/09/20/hexo/hexo%E8%BF%9B%E9%98%B6%E5%8A%9F%E8%83%BD/</url>
+    
+    <content type="html"><![CDATA[<h2 id="进阶功能"><a href="#进阶功能" class="headerlink" title="进阶功能"></a>进阶功能</h2><h3 id="abbrlink生成唯一永久文章链接"><a href="#abbrlink生成唯一永久文章链接" class="headerlink" title="abbrlink生成唯一永久文章链接"></a>abbrlink生成唯一永久文章链接</h3><h4 id="1-安装插件"><a href="#1-安装插件" class="headerlink" title="1.安装插件"></a>1.安装插件</h4><pre class=" language-hljs js"><code class="language-hljs js">npm install hexo-abbrlink --save</code></pre><blockquote><p>执行此命令可能会不成功，提示你缺少相应的依赖<br> 比如<code>babel-eslint</code>、<code>mini-css-extract-plugin</code>、<code>webpack-cli</code>…<br> 使用npm命令安装即可，比如<code>npm install eslint@4.x babel-eslint@8 --save-dev</code></p></blockquote><h4 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h4><p>修改根目录配置文件<code>config.yml</code>，改为：</p><pre class=" language-hljs js"><code class="language-hljs js">permalink: blog/:abbrlink.html  # 也可以直接使用 :/abbrlinkabbrlink:    alg: crc32   #算法： crc16(default) and crc32    rep: hex     #进制： dec(default) and hex</code></pre><p>生成完后，原<code>md</code>文件的Front-matter(就是— —中间的内容) 内会增加<code>abbrlink</code> 字段，值为生成的ID 。这个字段确保了在我们修改了Front-matter 内的博客标题title或创建日期date字段之后而不会改变链接地址。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo笔记</title>
+    <link href="/2020/09/20/hexo/hexo%E7%AC%94%E8%AE%B0/"/>
+    <url>/2020/09/20/hexo/hexo%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="layout-post-、draft-和-page的区别"><a href="#layout-post-、draft-和-page的区别" class="headerlink" title="layout:  post 、draft 和 page的区别"></a>layout:  post 、draft 和 page的区别</h2><p>1.路径不同</p><p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p><table><thead><tr><th align="left">布局</th><th align="left">路径</th></tr></thead><tbody><tr><td align="left"><code>post</code></td><td align="left"><code>source/_posts</code></td></tr><tr><td align="left"><code>page</code></td><td align="left"><code>source</code></td></tr><tr><td align="left"><code>draft</code></td><td align="left"><code>source/_drafts</code></td></tr></tbody></table><p>2.作用不同</p><p>page生成的页面用于导航，post是文章</p><h2 id="标签和分类没有内容"><a href="#标签和分类没有内容" class="headerlink" title="标签和分类没有内容"></a>标签和分类没有内容</h2><p><code>source/tags/index.md</code>中 下面应为layout 而不是 tags，同理分类处也是layout</p><pre class=" language-hljs yaml"><span class="hljs-attr">title:</span> <span class="hljs-string"><code class="language-hljs yaml"><span class="hljs-attr">title:</span> <span class="hljs-string">标签</span><span class="hljs-attr">date:</span> <span class="hljs-number">2020</span><span class="hljs-number">-09</span><span class="hljs-number">-20</span> <span class="hljs-number">19</span><span class="hljs-string">:19:19</span><span class="hljs-attr">layout:</span> <span class="hljs-string">"tags"</span></code></pre><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="new"><a href="#new" class="headerlink" title="new"></a>new</h3><pre class=" language-hljs gauss">$ hexo <span class="hljs-keyword">new</span> [layout] &lt;<span class="hljs-built_in"><code class="language-hljs gauss">$ hexo <span class="hljs-keyword">new</span> [layout] &lt;<span class="hljs-built_in">title</span>></code></pre><p>新建一篇文章。如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，请使用引号括起来。</p><pre class=" language-hljs actionscript">$ hexo <span class="hljs-keyword">new</span> <span class="hljs-string"><code class="language-hljs actionscript">$ hexo <span class="hljs-keyword">new</span> <span class="hljs-string">"post title with whitespace"</span></code></pre><table><thead><tr><th align="left">参数</th><th align="left">描述</th></tr></thead><tbody><tr><td align="left"><code>-p</code>, <code>--path</code></td><td align="left">自定义新文章的路径</td></tr><tr><td align="left"><code>-r</code>, <code>--replace</code></td><td align="left">如果存在同名文章，将其替换</td></tr><tr><td align="left"><code>-s</code>, <code>--slug</code></td><td align="left">文章的 Slug，作为新文章的文件名和发布后的 URL</td></tr></tbody></table><p>默认情况下，Hexo 会使用文章的标题来决定文章文件的路径。对于独立页面来说，Hexo 会创建一个以标题为名字的目录，并在目录中放置一个 <code>index.md</code> 文件。你可以使用 <code>--path</code> 参数来覆盖上述行为、自行决定文件的目录：</p><pre class=" language-hljs routeros">hexo new<span class="hljs-built_in"> page </span>--path about/me <span class="hljs-string"><code class="language-hljs routeros">hexo new<span class="hljs-built_in"> page </span>--path about/me <span class="hljs-string">"About me"</span></code></pre><p>以上命令会创建一个 <code>source/about/me.md</code> 文件，同时 Front Matter 中的 title 为 <code>&quot;About me&quot;</code></p><p>注意！title 是必须指定的！如果你这么做并不能达到你的目的：</p><h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>github</title>
+    <link href="/2020/09/20/github/"/>
+    <url>/2020/09/20/github/</url>
+    
+    <content type="html"><![CDATA[<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="git-init——初始化仓库"><a href="#git-init——初始化仓库" class="headerlink" title="git init——初始化仓库"></a>git init——初始化仓库</h4><pre class=" language-hljs stata">$ <span class="hljs-keyword">mkdir</span> git-<span class="hljs-keyword"><code class="language-hljs stata">$ <span class="hljs-keyword">mkdir</span> git-<span class="hljs-keyword">tutorial</span>$ <span class="hljs-keyword">cd</span> git-<span class="hljs-keyword">tutorial</span>$ git initInitialized empty Git repository <span class="hljs-keyword">in</span> /Users/hirocaster/github/github-book/git-<span class="hljs-keyword">tutorial</span>/.git/</code></pre><p>​        如果初始化成功，执行了 git init 命令的目录下就会生成 .git 目 录。这个 .git 目录里存储着管理当前目录内容所需的仓库数据。</p><p>​        在 Git 中，我们将这个目录的内容称为“附属于该仓库的工作树”。 文件的编辑等操作在工作树中进行，然后记录到仓库中，以此管理文件 的历史快照。</p><h4 id="git-status——查看仓库的状态"><a href="#git-status——查看仓库的状态" class="headerlink" title="git status——查看仓库的状态"></a>git status——查看仓库的状态</h4><p>所谓提交 （Commit），是指“记录工作树中所有文件的当前状态”。</p><p>git fetch  = pull(远端仓库，可以是别人的仓库) + merge本地分支   </p><pre class=" language-hljs dockerfile">git fetch origin     //origin是 git remote <span class="hljs-keyword">add</span><span class="bash"><code class="language-hljs dockerfile">git fetch origin     //origin是 git remote <span class="hljs-keyword">add</span><span class="bash"> ...添加的</span></code></pre><p>merge</p><pre class=" language-hljs stata">git checkout master <span class="hljs-comment"><code class="language-hljs stata">git checkout master <span class="hljs-comment">//切换到master分支</span><span class="hljs-comment">//为了在历史记录中明确记录下本次分支合 并，我们需要创建合并提交。因此，在合并时加上 --no-ff 参数。</span>git <span class="hljs-keyword">merge</span> --<span class="hljs-keyword">no</span>-ff feature-A  <span class="hljs-comment">// 合并feature-A到merge</span></code></pre><p>pull </p><p>git push :  推送到远程仓库</p><p>rebase</p><p>git clone</p><p>git add 文件    提交到暂存区</p><p>git commit -m描述：       提交到本地仓库</p><ul><li>-m</li><li>-am</li><li>–amend</li></ul><p>git status 查看状态</p><p>在远程仓库中也创建 develop 分支</p><p>开发者要时刻注意，对分支进行任何操作之前都必须先执行 pull 获 取最新代码，修改完毕后应尽快进行 push 操作，保证 GitHub 端远程仓 库内的代码为最新状态。</p><p>GitHub 端的远程仓库为 remotes/origin</p><h4 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h4><pre class=" language-hljs armasm"><code class="language-hljs armasm">//查看<span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>: 显示本地分支一览表<span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-r : 查看远程仓库的分支<span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-a : 查看本地和远程仓库的所有分支//创建<span class="hljs-symbol">git</span> checkout -<span class="hljs-keyword">b </span>分支名 ：以当前分支为基础，创建切换分支//切换<span class="hljs-symbol">git</span> checkout master: 切换到master分支<span class="hljs-symbol">git</span> checkout - : 切换回上一个分支<span class="hljs-symbol">git</span> checkout -<span class="hljs-keyword">b </span>本地分支名 origin/远程分支名:将远程git仓库里的指定分支拉取到本地（本地不存在的分支）//删除<span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-d <span class="hljs-keyword">bug_xzx </span>删除本地的<span class="hljs-keyword">bug_xzx分支</span><span class="hljs-keyword">git </span><span class="hljs-keyword">push </span>origin --delete <span class="hljs-keyword">bug_xzx </span> 删除远程的<span class="hljs-keyword">bug_xzx分支</span></code></pre><h3 id="二、push操作"><a href="#二、push操作" class="headerlink" title="二、push操作"></a>二、push操作</h3><p>1、将本地当前分支 推送到 远程指定分支上（注意：pull是远程在前本地在后，push相反）：</p><pre class=" language-hljs xml">git push origin <span class="hljs-tag">&lt;<span class="hljs-name">本地分支名</span>&gt;</span>:<span class="hljs-tag">&lt;<span class="hljs-name"><code class="language-hljs xml">git push origin <span class="hljs-tag">&lt;<span class="hljs-name">本地分支名</span>&gt;</span>:<span class="hljs-tag">&lt;<span class="hljs-name">远程分支名</span>></span></code></pre><p>2、将本地当前分支 推送到 与本地当前分支同名的远程分支上（注意：pull是远程在前本地在后，push相反）：</p><pre class=" language-hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in"><code class="language-hljs maxima">git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> <本地分支名></code></pre><p>3、将本地当前分支 推送到 与本地当前分支同名的远程分支上(需先关联远程分支，方法见文章末尾)</p><pre class=" language-hljs maxima">git <span class="hljs-built_in">push</span>同样的，推荐使用第<span class="hljs-number">2</span>种方式，git <span class="hljs-built_in">push</span> <span class="hljs-built_in"><code class="language-hljs maxima">git <span class="hljs-built_in">push</span>同样的，推荐使用第<span class="hljs-number">2</span>种方式，git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> <远程同名分支名></code></pre><p>git diff</p><p>不妨养成这样一个好习惯：在执行 git commit 命令之前先执行 <code>git diff HEAD</code> 命令，查看本次提交与上次提交之间有什么差别，等 确认完毕后再进行提交。这里的 HEAD 是指向当前分支中最新一次提交 的指针。</p><p>取消刚刚所有添加进暂存区的</p><pre class=" language-hljs sql">git <span class="hljs-keyword">restore</span> <span class="hljs-comment"><code class="language-hljs sql">git <span class="hljs-keyword">restore</span> <span class="hljs-comment">--staged .</span></code></pre><p>取消添加进暂存区的某个文件</p><pre class=" language-hljs sql">git <span class="hljs-keyword">restore</span> <span class="hljs-comment"><code class="language-hljs sql">git <span class="hljs-keyword">restore</span> <span class="hljs-comment">--staged <file></span></code></pre><p>查看远程仓库的地址</p><pre class=" language-hljs ebnf"><span class="hljs-attribute"><code class="language-hljs ebnf"><span class="hljs-attribute">git remote -v</span></code></pre><p>设置新的远程仓库地址</p><pre class=" language-hljs dsconfig"><span class="hljs-string">git </span><span class="hljs-string">remote </span><span class="hljs-built_in">set-url</span> <span class="hljs-string">origin </span><span class="hljs-string">git@</span><span class="hljs-string">github.</span><span class="hljs-string">com:</span>****/*****-<span class="hljs-string">client-5.</span><span class="hljs-string"><code class="language-hljs dsconfig"><span class="hljs-string">git </span><span class="hljs-string">remote </span><span class="hljs-built_in">set-url</span> <span class="hljs-string">origin </span><span class="hljs-string">git@</span><span class="hljs-string">github.</span><span class="hljs-string">com:</span>****/*****-<span class="hljs-string">client-5.</span><span class="hljs-string">git</span></code></pre><h3 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h3><h4 id="1-查看远程仓库"><a href="#1-查看远程仓库" class="headerlink" title="1.查看远程仓库"></a>1.查看远程仓库</h4><pre class=" language-hljs properties"><span class="hljs-attr">git</span> <span class="hljs-string"><code class="language-hljs properties"><span class="hljs-attr">git</span> <span class="hljs-string">remote 查看远程仓库的名字</span><span class="hljs-attr">git</span> <span class="hljs-string">remote -v 显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL</span></code></pre><h4 id="2-添加远程仓库"><a href="#2-添加远程仓库" class="headerlink" title="2.添加远程仓库"></a>2.添加远程仓库</h4><h5 id="2-1自动添加"><a href="#2-1自动添加" class="headerlink" title="2.1自动添加"></a>2.1自动添加</h5><p>git clone https:…..会自动添加远程仓库 并命名远程仓库名为origin.</p><h5 id="2-2手动添加"><a href="#2-2手动添加" class="headerlink" title="2.2手动添加"></a>2.2手动添加</h5><pre class=" language-hljs vim">git remote <span class="hljs-built_in">add</span> <span class="hljs-symbol">&lt;shortname&gt;</span> <span class="hljs-symbol"><code class="language-hljs vim">git remote <span class="hljs-built_in">add</span> <span class="hljs-symbol">&lt;shortname&gt;</span> <span class="hljs-symbol"><url></span><span class="hljs-keyword">e</span><span class="hljs-variable">g:</span>$ git remote <span class="hljs-built_in">add</span> pb http<span class="hljs-variable">s:</span>//github.<span class="hljs-keyword">com</span>/paulboone/ticgit</code></pre><p>之后可以在命令行中使用字符串 <code>pb</code> 来代替整个 URL</p><blockquote><p>什么是origin    : 如果你已经克隆了自己的仓库，那么至少应该能看到 origin ——这是 Git 给你克隆的仓库服务器的默认名字：</p></blockquote><h4 id="3-从远程仓库中抓取与拉取"><a href="#3-从远程仓库中抓取与拉取" class="headerlink" title="3.从远程仓库中抓取与拉取"></a>3.从远程仓库中抓取与拉取</h4><blockquote><p><a href="https://git-scm.com/book/zh/v2/Git-基础-远程仓库的使用" target="_blank" rel="noopener">https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8</a></p></blockquote><p>git pull 根据配置的不同，可为git fetch + git merge 或 git fetch + git rebase</p><p><img src="https://gzr-blog.oss-cn-shanghai.aliyuncs.com/uPic/image-20200826162749286_2020-09-20_14:09:42.png" srcset="/img/loading.gif" alt="image-20200826162749286"></p><pre class=" language-hljs crmsh"><span class="hljs-comment"><code class="language-hljs crmsh"><span class="hljs-comment"># 将远程主机的master分支最新内容拉下来后与当前本地分支直接合并</span>git  pull origin <span class="hljs-keyword">master</span> <span class="hljs-title"></span><span class="hljs-title"># git</span> pull <span class="hljs-tag"><远程主机名></span> <span class="hljs-tag"><远程分支名></span>:<span class="hljs-tag"><本地分支名></span>git pull origin <span class="hljs-literal">master</span>:feature-wxDemo  <span class="hljs-comment"># 将远程主机的最新内容拉到本地，不进行合并</span>git fetch origin <span class="hljs-literal">master</span></code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+      <tag>test</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2020/03/15/hello-world/"/>
+    <url>/2020/03/15/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-hljs bash">$ hexo new <span class="hljs-string"><code class="language-hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-hljs bash"><code class="language-hljs bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-hljs bash"><code class="language-hljs bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-hljs bash"><code class="language-hljs bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Hellox</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
