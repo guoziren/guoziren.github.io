@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Bailitusu">
+  <meta name="keywords" content="">
+  <title>ListView与RecyclerView - Guoziren`s World</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Guoziren`s Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-05-13 14:36" pubdate>
+        2020年5月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      994 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">ListView与RecyclerView</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>1.[美团2020]listview和 recyclerview 的区别</p>
+<p><a href="https://www.jianshu.com/p/cd8244d1c19a" target="_blank" rel="noopener">https://www.jianshu.com/p/cd8244d1c19a</a></p>
+<p>ListView的父类AbsListVIew中的RecycleBin内部类保存了一个View[]数组mActiveViews，用来保存屏幕上正在显示的所有View</p>
+<p>还保存了一个ArrayList<View>集合mScrapViews，用来保存所有滑出屏幕等待复用的View。</p>
+<p>当用户滑动屏幕时，ListView会从mActiveViews中将滑出屏幕的view加入mScrapViews</p>
+<p>并从后者取出view传给adapter的getView()方法供其复用<br>————————————————<br>版权声明：本文为CSDN博主「leo1302」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a href="https://blog.csdn.net/leo1302/article/details/38680205" target="_blank" rel="noopener">https://blog.csdn.net/leo1302/article/details/38680205</a></p>
+<p>第一次Layout过程当中向ListView添加了这么多的子View。调用了RecycleBin的fillActiveViews()方法，第二次layout效果可就不一样了，因为目前ListView中已经有子View了，所有的子View都会被缓存到RecycleBin的mActiveViews数组当中。</p>
+<p>detachAllViewsFromParent()方法。这个方法会将所有ListView当中的子View全部清除掉</p>
+<p>在obtainView()方法中会去infalte布局的话</p>
+<p>setupChild()方法的最后一个参数传入的是true，这个参数表明当前的View是之前被回收过的</p>
+<p>recycled现在是true，所以会执行attachViewToParent()</p>
+<h2 id="listview"><a href="#listview" class="headerlink" title="listview"></a>listview</h2><h3 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h3><h3 id="listview原理"><a href="#listview原理" class="headerlink" title="listview原理"></a>listview原理</h3><p>ListView能够展示大量数据而不会OOM，是因为RecycleBin这个类，它是AbsListView的内部类，ListView继承自AbsListView。</p>
+<p>RecycleBin的作用就是重用view，它内部存有<em>ActiveViews 和 ScrapViews</em></p>
+<pre class=" language-hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol"><code class="language-hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">RecycleBin</span> &#123;
+ 	<span class="hljs-keyword">private</span> View[] mActiveViews = new View[<span class="hljs-number">0</span>];
+	<span class="hljs-keyword">private</span> ArrayList<View>[] mScrapViews;
+ 	<span class="hljs-keyword">private</span> ArrayList<View> mCurrentScrap;
+&#125;</code></pre>
+
+<p><strong>ActiveViews</strong>:是一个view数组，存屏幕可见的view，<strong>fillActiveViews()</strong> 方法往里面存，<strong>getActiveView()</strong> 从中取出，取出的view会从mActiveViews中移除，mActiveViews不能被重复利用。</p>
+<p><strong>ScrapViews</strong>：是一些被移出屏幕的能够被adapter重用的view，避免为每个item创建新的view。</p>
+<ul>
+<li><p>mCurrentScrap:ArrayList类型，用于存储离屏的 View</p>
+</li>
+<li><p>mScrapViews</p>
+</li>
+<li><ul>
+<li>ArrayList[] 类型</li>
+<li>数组中每个元素都是 ArrayList类型，效果同 mCurrentScrap</li>
+<li>mScrapViews[0] 就是 mCurrentScrap</li>
+<li>其数组长度应为 ViewTypeCount。因为针对不同的 ViewType，ListView 都要有一个专门的 ArrayList 链表来缓存它对应的 View</li>
+</ul>
+</li>
+</ul>
+<h4 id="listview展示在界面的调用过程"><a href="#listview展示在界面的调用过程" class="headerlink" title="listview展示在界面的调用过程"></a>listview展示在界面的调用过程</h4><p><img src="../../../../../Pictures/md_images/listview2020-10-04.jpg" srcset="/img/loading.gif" alt="listview2020-10-04"></p>
+<h4 id="listview滑动时的调用过程"><a href="#listview滑动时的调用过程" class="headerlink" title="listview滑动时的调用过程"></a>listview滑动时的调用过程</h4><p><img src="../../../../../Pictures/md_images/listview%E6%BB%91%E5%8A%A8%E8%BF%87%E7%A8%8B.jpg" srcset="/img/loading.gif" alt="listview滑动过程"></p>
+<img src="../../../../../Pictures/md_images/image-20201003150726815.png" srcset="/img/loading.gif" alt="image-20201003150726815" style="zoom:90%;" />
+
+<h4 id="2个重要方法"><a href="#2个重要方法" class="headerlink" title="2个重要方法"></a>2个重要方法</h4><pre class=" language-hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> View <span class="hljs-title">makeAndAddView</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">boolean</span> flow, <span class="hljs-keyword"><code class="language-hljs java"><span class="hljs-function"><span class="hljs-keyword">private</span> View <span class="hljs-title">makeAndAddView</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position, <span class="hljs-keyword">int</span> y, <span class="hljs-keyword">boolean</span> flow, <span class="hljs-keyword">int</span> childrenLeft,</span></span>
+<span class="hljs-function"><span class="hljs-params">        <span class="hljs-keyword">boolean</span> selected)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (!mDataChanged) &#123;
+        <span class="hljs-comment">// Try to use an existing view for this position.</span>
+        <span class="hljs-keyword">final</span> View activeView = mRecycler.getActiveView(position);
+        <span class="hljs-keyword">if</span> (activeView != <span class="hljs-keyword">null</span>) &#123;
+            setupChild(activeView, position, y, flow, childrenLeft, selected, <span class="hljs-keyword">true</span>);
+            <span class="hljs-keyword">return</span> activeView;
+        &#125;
+    &#125;
+    <span class="hljs-comment">// Make a new view for this position, or convert an unused view if</span>
+    <span class="hljs-comment">// possible.</span>
+    <span class="hljs-keyword">final</span> View child = obtainView(position, mIsScrap);
+    <span class="hljs-comment">// This needs to be positioned and measured.</span>
+    setupChild(child, position, y, flow, childrenLeft, selected, mIsScrap[<span class="hljs-number">0</span>]);
+    <span class="hljs-keyword">return</span> child;
+&#125;</code></pre>
+
+<ul>
+<li>数据没有变化，先从activeview中取</li>
+<li>数据有变化，直接从scrapView中取</li>
+</ul>
+<pre class=" language-hljs java"><span class="hljs-comment"><code class="language-hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Get a view and have it show the data associated with the specified</span>
+<span class="hljs-comment"> * position. This is called when we have already discovered that the view is</span>
+<span class="hljs-comment"> * not available for reuse in the recycle bin. The only choices left are</span>
+<span class="hljs-comment"> * converting an old view or making a new one.</span>
+<span class="hljs-comment"> * </span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> position</span>
+<span class="hljs-comment"> *            The position to display</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> isScrap</span>
+<span class="hljs-comment"> *            Array of at least 1 boolean, the first entry will become true</span>
+<span class="hljs-comment"> *            if the returned view was taken from the scrap heap, false if</span>
+<span class="hljs-comment"> *            otherwise.</span>
+<span class="hljs-comment"> * </span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span> A view displaying the data associated with the specified position</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-function">View <span class="hljs-title">obtainView</span><span class="hljs-params">(<span class="hljs-keyword">int</span> position, <span class="hljs-keyword">boolean</span>[] isScrap)</span> </span>&#123;
+	isScrap[<span class="hljs-number">0</span>] = <span class="hljs-keyword">false</span>;
+	View scrapView;
+	scrapView = mRecycler.getScrapView(position);
+	View child;
+	<span class="hljs-keyword">if</span> (scrapView != <span class="hljs-keyword">null</span>) &#123;
+		child = mAdapter.getView(position, scrapView, <span class="hljs-keyword">this</span>);
+		<span class="hljs-keyword">if</span> (child != scrapView) &#123;
+			mRecycler.addScrapView(scrapView);
+			<span class="hljs-keyword">if</span> (mCacheColorHint != <span class="hljs-number">0</span>) &#123;
+				child.setDrawingCacheBackgroundColor(mCacheColorHint);
+			&#125;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			isScrap[<span class="hljs-number">0</span>] = <span class="hljs-keyword">true</span>;
+			dispatchFinishTemporaryDetach(child);
+		&#125;
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		child = mAdapter.getView(position, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">this</span>);
+		<span class="hljs-keyword">if</span> (mCacheColorHint != <span class="hljs-number">0</span>) &#123;
+			child.setDrawingCacheBackgroundColor(mCacheColorHint);
+		&#125;
+	&#125;
+	<span class="hljs-keyword">return</span> child;
+&#125;</code></pre>
+
+<p>另外：若getView中 不复用convertview，scrapview的数量随着移出屏幕的view的数量的增加而增加，不会减少。</p>
+<h4 id="数据变化时，activeViews的情况，TODO…"><a href="#数据变化时，activeViews的情况，TODO…" class="headerlink" title="数据变化时，activeViews的情况，TODO…"></a>数据变化时，activeViews的情况，TODO…</h4><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzA5MzI3NjE2MA==&mid=2650242452&idx=1&sn=4ed1449da00917508302afb27df6eb72&chksm=88638cfbbf1405ed2c3d3c110e3d9ab40b59a82bf7e6cfdcaf8dea19041c2f4234cd5b986f94&mpshare=1&scene=23&srcid=1004Ycps2Hmuz07Q5ivUBr68&sharer_sharetime=1601798572801&sharer_shareid=bdce9fa9b15be34893c6ab661a3409fe%23rd" target="_blank" rel="noopener">1.通过可视化的方式精解ListView缓存机制</a></p>
+<p><a href="http://blog.csdn.net/guolin_blog/article/details/44996879" target="_blank" rel="noopener">2.Android ListView工作原理完全解析</a></p>
+</blockquote>
+<h3 id="listview优化"><a href="#listview优化" class="headerlink" title="listview优化"></a>listview优化</h3><ol>
+<li><p>优化加载view:convertView的使用，避免每个item都从xml中加载生成</p>
+</li>
+<li><p>优化找子view:viewholder的使用，避免每次都要findviewbyid(这是dfs的操作).</p>
+<ol>
+<li>Holder内部类要设置成静态的吗？有什么区别？</li>
+</ol>
+</li>
+<li><p>异步加载数据，分页加载数据。</p>
+</li>
+<li><p>使用 WeakRefrence 引用 ImageView 对象</p>
+</li>
+</ol>
+<h2 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h2><h3 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h3><h3 id="缓存原理"><a href="#缓存原理" class="headerlink" title="缓存原理"></a>缓存原理</h3><p>LinearyLayoutManager</p>
+<h2 id="listview与recyclerview对比"><a href="#listview与recyclerview对比" class="headerlink" title="listview与recyclerview对比"></a>listview与recyclerview对比</h2>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/09/20/github/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">github</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/15/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">鄂ICP备2020017971号-1</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "ListView与RecyclerView&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: true,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
