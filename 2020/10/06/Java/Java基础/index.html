@@ -177,7 +177,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      32.1k 字
+      32.7k 字
     </span>
   
 
@@ -187,7 +187,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      368
+      375
        分钟
     </span>
   
@@ -1606,7 +1606,7 @@ Copy</code></pre>
 <h3 id="2-10-其他"><a href="#2-10-其他" class="headerlink" title="2.10 其他"></a>2.10 其他</h3><h4 id="Object的方法"><a href="#Object的方法" class="headerlink" title="Object的方法"></a>Object的方法</h4><h4 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h4><h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><h4 id="对象转化和Instance-of"><a href="#对象转化和Instance-of" class="headerlink" title="对象转化和Instance of"></a>对象转化和Instance of</h4><h4 id="防止扩展和重写"><a href="#防止扩展和重写" class="headerlink" title="防止扩展和重写"></a>防止扩展和重写</h4><h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><h4 id="如何实现函数指针"><a href="#如何实现函数指针" class="headerlink" title="如何实现函数指针?"></a>如何实现函数指针?</h4><h4 id="char占几个字节，其他基本类型占几个字节"><a href="#char占几个字节，其他基本类型占几个字节" class="headerlink" title="char占几个字节，其他基本类型占几个字节?"></a>char占几个字节，其他基本类型占几个字节?</h4><p>char占2个字节；</p>
 <p>boolean占至少1个字节，JVM规范中 boolean变量当做int处理;而boolean数组中每个元素是1字节。</p>
 <h4 id="什么是向上转型？"><a href="#什么是向上转型？" class="headerlink" title="什么是向上转型？"></a>什么是向上转型？</h4><p>把子类的引用转换为父类的引用称作<strong>向上转型</strong>，这个术语基于类继承图。就是参数是父类的引用，传入了子类的引用。</p>
-<h4 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal?"></a>ThreadLocal?</h4><h4 id="equals和hashcode"><a href="#equals和hashcode" class="headerlink" title="equals和hashcode"></a>equals和hashcode</h4><h4 id="equals规范"><a href="#equals规范" class="headerlink" title="equals规范"></a>equals规范</h4><p>java编程思想中定义的合适的equals函数需满足：</p>
+<h4 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal?"></a>ThreadLocal?</h4><h4 id="equals和hashcode"><a href="#equals和hashcode" class="headerlink" title="equals和hashcode"></a>equals和hashcode</h4><h5 id="equals规范"><a href="#equals规范" class="headerlink" title="equals规范"></a>equals规范</h5><p>java编程思想中定义的合适的equals函数需满足：</p>
 <ol>
 <li><p>如果<strong>右值</strong>是<strong>null</strong>，那么不相等。</p>
 </li>
@@ -2024,7 +2024,26 @@ Copy</code></pre>
 <li>对换性：作业运行过程中存在换进换出的过程(换出暂时不用的数据换入需要的数据)</li>
 <li>虚拟性：虚拟性体现在其从逻辑上扩充了内存的容量(可以运行实际内存需求比物理内存大的应用程序)。虚拟性是虚拟存储器的最重要特征也是其最终目标。虚拟性建立在多次性和对换性的基础上行，多次性和对换性又建立在离散分配的基础上。</li>
 </ol>
-<h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><p>死锁</p>
+<h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h4 id="1-管道"><a href="#1-管道" class="headerlink" title="1.管道"></a>1.管道</h4><p>管道是一种半双工通信（单向交替传输）的方式，数据只能单向流动，而且只能在父子进程或者兄弟进程中使用</p>
+<p>管道是1个特殊的文件，这个文件只存在于内存中。创建管道时，系统为管道分配一个页面作为数据缓冲区。</p>
+<pre class=" language-hljs angelscript"><code class="language-hljs angelscript">#include <unistd.h> 
+<span class="hljs-built_in">int</span> pipe(<span class="hljs-built_in">int</span> fd[<span class="hljs-number">2</span>]);/调用成功返回<span class="hljs-number">0</span>，并且数组中将包含<span class="hljs-number">2</span>个新的文件描述符,有错误发生返回<span class="hljs-number">-1</span></code></pre>
+
+<h4 id="2-消息队列"><a href="#2-消息队列" class="headerlink" title="2.消息队列"></a>2.消息队列</h4><p>消息队列是存放在内核中的消息链表，每个消息队列由消息队列标识符标识。消息队列克服了信号传递信息量少、管道只能承载无格式字节流以及缓冲区大小受限等特点。</p>
+<h4 id="3-信号量"><a href="#3-信号量" class="headerlink" title="3.信号量"></a>3.信号量</h4><p>信号量是一个计数器，常用于处理进程或线程的同步问题，特别是对临界资源的访问。信号量的值大于或等于0时表示可供并发进程使用的资源实体数；小于0时代表正在等待使用临界资源的进程数。</p>
+<h4 id="4-共享内存"><a href="#4-共享内存" class="headerlink" title="4.共享内存"></a>4.共享内存</h4><p>就是分配一块能被其他进程访问的内存，需要使用信号量用来同步对共享存储的访问。</p>
+<p>多个进程可以将同一个文件映射到它们的地址空间从而实现共享内存。</p>
+<p>允许多个进程共享一个给定的存储区。因为数据不需要在进程之间复制，所以这是最快的一种 IPC。</p>
+<h4 id="5-socket"><a href="#5-socket" class="headerlink" title="5.socket"></a>5.socket</h4><p>与其它通信机制不同的是，它可用于不同机器间的进程通信。</p>
+<h4 id="为什么要使用Binder？"><a href="#为什么要使用Binder？" class="headerlink" title="为什么要使用Binder？"></a>为什么要使用Binder？</h4><ol>
+<li><strong>管道：</strong>在创建时分配一个page大小的内存，缓存区大小比较有限；</li>
+<li><strong>消息队列</strong>：信息复制两次，额外的CPU消耗；不合适频繁或信息量大的通信；</li>
+<li><strong>共享内存</strong>：无须复制，共享缓冲区直接付附加到进程虚拟地址空间，速度快；但进程间的同步问题操作系统无法实现，必须各进程利用同步工具解决；</li>
+<li><strong>套接字</strong>：作为更通用的接口，传输效率低，主要用于不通机器或跨网络的通信；</li>
+</ol>
+<p><strong>性能方面</strong></p>
+<p>Binder数据拷贝只需要一次，而管道、消息队列、Socket都需要2次，共享内存方式一次内存拷贝都不需要，但实现方式又比较复杂。</p>
+<p>死锁</p>
 <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h3 id="原则："><a href="#原则：" class="headerlink" title="原则："></a>原则：</h3><ul>
 <li>多用组合，少用继承</li>
 <li>针对接口编程，不针对实现编程</li>
@@ -2146,7 +2165,7 @@ Copy</code></pre>
 <p>　　●　　<strong>具体主题(ConcreteSubject)角色：</strong>将有关状态存入具体观察者对象；在具体主题的内部状态改变时，给所有登记过的观察者发出通知。具体主题角色又叫做具体被观察者(Concrete Observable)角色。</p>
 <p>　　●　　<strong>抽象观察者(Observer)角色：</strong>为所有的具体观察者定义一个接口，在得到主题的通知时更新自己，这个接口叫做更新接口。</p>
 <p>　　●　　<strong>具体观察者(ConcreteObserver)角色：</strong>存储与主题的状态自恰的状态。具体观察者角色实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状态相协调。如果需要，具体观察者角色可以保持一个指向具体主题对象的引用。</p>
-<h3 id="2-迭代器模式"><a href="#2-迭代器模式" class="headerlink" title="2.迭代器模式"></a>2.迭代器模式</h3>
+<h3 id="2-迭代器模式"><a href="#2-迭代器模式" class="headerlink" title="2.迭代器模式"></a>2.迭代器模式</h3><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1>
             </div>
             <hr>
             <div>
@@ -2161,6 +2180,12 @@ Copy</code></pre>
                 <div class="post-prevnext row">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2020/10/12/%E7%BD%91%E7%BB%9C/https/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">网络/https</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

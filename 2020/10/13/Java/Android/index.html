@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Bailitusu">
+  <meta name="keywords" content="">
+  <title>Java/Android - Guoziren`s World</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Guoziren`s Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-13 12:46" pubdate>
+        2020年10月13日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Java/Android</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="Android基础"><a href="#Android基础" class="headerlink" title="Android基础"></a>Android基础</h1><h3 id="apk打包流程？"><a href="#apk打包流程？" class="headerlink" title="apk打包流程？"></a>apk打包流程？</h3><h3 id="事件分发机制"><a href="#事件分发机制" class="headerlink" title="事件分发机制"></a>事件分发机制</h3><ul>
+<li><p>Android事件分发机制的本质是要解决：</p>
+<p>点击事件由哪个对象发出，经过哪些对象，最终达到哪个对象并最终得到处理。</p>
+<blockquote>
+<p>这里的对象是指Activity、ViewGroup、View</p>
+</blockquote>
+</li>
+<li><p>Android中事件分发顺序：<strong>Activity（Window） -&gt; ViewGroup -&gt; View</strong></p>
+</li>
+<li><p>事件分发过程由dispatchTouchEvent() 、onInterceptTouchEvent()和onTouchEvent()三个方法协助完成</p>
+</li>
+</ul>
+<h4 id="三者关系"><a href="#三者关系" class="headerlink" title="三者关系"></a>三者关系</h4><p>下面将用一段伪代码来阐述上述三个方法的关系和点击事件传递规则</p>
+<pre class=" language-hljs java"><span class="hljs-comment"><code class="language-hljs java"><span class="hljs-comment">// 点击事件产生后，会直接调用dispatchTouchEvent（）方法</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">dispatchTouchEvent</span><span class="hljs-params">(MotionEvent ev)</span> </span>&#123;
+
+    <span class="hljs-comment">//代表是否消耗事件</span>
+    <span class="hljs-keyword">boolean</span> consume = <span class="hljs-keyword">false</span>;
+
+
+    <span class="hljs-keyword">if</span> (onInterceptTouchEvent(ev)) &#123;
+    <span class="hljs-comment">//如果onInterceptTouchEvent()返回true则代表当前View拦截了点击事件</span>
+    <span class="hljs-comment">//则该点击事件则会交给当前View进行处理</span>
+    <span class="hljs-comment">//即调用onTouchEvent (）方法去处理点击事件</span>
+      consume = onTouchEvent (ev) ;
+
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-comment">//如果onInterceptTouchEvent()返回false则代表当前View不拦截点击事件</span>
+      <span class="hljs-comment">//则该点击事件则会继续传递给它的子元素</span>
+      <span class="hljs-comment">//子元素的dispatchTouchEvent（）就会被调用，重复上述过程</span>
+      <span class="hljs-comment">//直到点击事件被最终处理为止</span>
+      consume = child.dispatchTouchEvent (ev) ;
+    &#125;
+
+    <span class="hljs-keyword">return</span> consume;
+   &#125;
+Copy</code></pre>
+
+<h4 id="场景介绍"><a href="#场景介绍" class="headerlink" title="场景介绍"></a>场景介绍</h4><h4 id="源码理解"><a href="#源码理解" class="headerlink" title="源码理解"></a>源码理解</h4><p>其中：</p>
+<ul>
+<li>super：调用父类方法</li>
+<li>true：消费事件，即事件不继续往下传递</li>
+<li>false：不消费事件，事件继续往下传递 / 交由给父控件onTouchEvent（）处理</li>
+</ul>
+<p><strong>所以，要想充分理解Android分发机制，本质上是要理解：</strong></p>
+<ul>
+<li>Activity对点击事件的分发机制</li>
+<li>ViewGroup对点击事件的分发机制</li>
+<li>View对点击事件的分发机制</li>
+</ul>
+<p>接下来，我将通过源码分析详细介绍Activity、View和ViewGroup的事件分发机制</p>
+<h4 id="4-1-Activity的事件分发机制"><a href="#4-1-Activity的事件分发机制" class="headerlink" title="4.1 Activity的事件分发机制"></a>4.1 Activity的事件分发机制</h4><ul>
+<li>当一个点击事件发生时，事件最先传到Activity的dispatchTouchEvent()进行事件分发，最终是调用了ViewGroup的dispatchTouchEvent()方法</li>
+<li>这样事件就从 Activity 传递到了 ViewGroup</li>
+<li>dispatchTouchEvent返回false ，则调用activity的onTouchEvent处理，之后结束。</li>
+</ul>
+<h4 id="4-2-ViewGroup事件的分发机制"><a href="#4-2-ViewGroup事件的分发机制" class="headerlink" title="4.2 ViewGroup事件的分发机制"></a>4.2 ViewGroup事件的分发机制</h4><p>什么时候判断拦截？</p>
+<ul>
+<li><p>如果当前事件是MotionEvent.ACTION_DOWN 或者不是DOWN事件且之前的DOWN事件有子view处理过(mFirstTouchTarget != null)，判断是否拦截。</p>
+</li>
+<li><p>如果是MOVE、UP等非DOWN事件，且之前没有孩子处理，开始持续拦截触摸（intercepted = true）</p>
+</li>
+</ul>
+<ul>
+<li>当ViewGroup不拦截事件的时候，事件会向下分发交由它的子View或ViewGroup(触摸位置在child的区域内)进行处理。</li>
+</ul>
+<p>总结</p>
+<ul>
+<li><p>Android事件分发是先传递到ViewGroup，再由ViewGroup传递到View</p>
+</li>
+<li><p>在ViewGroup中通过onInterceptTouchEvent()对事件传递进行拦截</p>
+<blockquote>
+<ol>
+<li>onInterceptTouchEvent方法返回true代表拦截事件，即不允许事件继续向子View传递；</li>
+<li>返回false代表不拦截事件，即允许事件继续向子View传递；（默认返回false）</li>
+<li>子View中如果将传递的事件消费掉，ViewGroup中将无法接收到任何事件。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>特别注意：</p>
+<ul>
+<li>如果ViewGroup A 拦截了一个半路的事件（如MOVE），这个事件将会被系统变成一个CANCEL事件并传递给之前处理该事件的子View；</li>
+<li>该事件不会再传递给ViewGroup A的onTouchEvent()</li>
+<li>只有再到来的事件才会传递到ViewGroup A的onTouchEvent()</li>
+</ul>
+<h4 id="4-3-View事件的分发机制"><a href="#4-3-View事件的分发机制" class="headerlink" title="4.3 View事件的分发机制"></a>4.3 View事件的分发机制</h4><ol>
+<li><p>onTouch（）的执行高于onClick（）</p>
+</li>
+<li><p>每当控件被点击时：</p>
+<ul>
+<li><p>如果在回调onTouch()里返回false，就会让dispatchTouchEvent方法返回false，那么就会执行onTouchEvent()；如果回调了setOnClickListener()来给控件注册点击事件的话，最后会在performClick()方法里回调onClick()。</p>
+<blockquote>
+<p>onTouch()返回false（该事件没被onTouch()消费掉） = 执行onTouchEvent() = 执行OnClick()</p>
+</blockquote>
+</li>
+<li><p>如果在回调onTouch()里返回true，就会让dispatchTouchEvent方法返回true，那么将不会执行onTouchEvent()，即onClick()也不会执行；</p>
+<blockquote>
+<p>onTouch()返回true（该事件被onTouch()消费掉） = dispatchTouchEvent()返回true（不会再继续向下传递） = 不会执行onTouchEvent() = 不会执行OnClick()</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="onTouch-和onTouchEvent-的区别"><a href="#onTouch-和onTouchEvent-的区别" class="headerlink" title="onTouch()和onTouchEvent()的区别"></a>onTouch()和onTouchEvent()的区别</h5><ul>
+<li><p>这两个方法都是在View的dispatchTouchEvent中调用，但onTouch优先于onTouchEvent执行。</p>
+</li>
+<li><p>如果在onTouch方法中返回true将事件消费掉，onTouchEvent()将不会再执行。</p>
+</li>
+<li><p><font color = red>如果该控件是可以点击的，就一定会返回true ;如果该控件是不可以点击的，就一定会返回false</font></p>
+</li>
+</ul>
+<p><strong>给出ACTION_MOVE和ACTION_UP事件的传递结论</strong>：</p>
+<ul>
+<li>如果在某个对象（Activity、ViewGroup、View）的dispatchTouchEvent()消费事件（返回true），那么收到ACTION_DOWN的函数也能收到ACTION_MOVE和ACTION_UP</li>
+</ul>
+<ul>
+<li>如果在某个对象（Activity、ViewGroup、View）的onTouchEvent()消费事件（返回true），那么ACTION_MOVE和ACTION_UP的事件从上往下传到这个View后就不再往下传递了，而直接传给自己的onTouchEvent()并结束本次事件传递过程。</li>
+</ul>
+<h4 id="滑动冲突处理？"><a href="#滑动冲突处理？" class="headerlink" title="滑动冲突处理？"></a>滑动冲突处理？</h4><h1 id="Android进阶"><a href="#Android进阶" class="headerlink" title="Android进阶"></a>Android进阶</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据结构与算法/排序</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/12/%E7%BD%91%E7%BB%9C/https/">
+                        <span class="hidden-mobile">网络/https</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">鄂ICP备2020017971号-1</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Java/Android&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: true,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

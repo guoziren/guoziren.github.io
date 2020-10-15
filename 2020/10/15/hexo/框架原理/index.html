@@ -1,0 +1,563 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Bailitusu">
+  <meta name="keywords" content="">
+  <title>框架原理 - Guoziren`s World</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-duotone-light.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Guoziren`s Space</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-15 11:10" pubdate>
+        2020年10月15日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      33
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">框架原理</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h3 id="1-Okhttp"><a href="#1-Okhttp" class="headerlink" title="1.Okhttp"></a>1.Okhttp</h3><h4 id="一、特点"><a href="#一、特点" class="headerlink" title="一、特点"></a>一、特点</h4><p>支持HTTP2.0。</p>
+<p>无缝支持GZIP来减少数据流量。</p>
+<p>发送的数据和接受的收据在传递过程中都是经过gzip压缩的。</p>
+<p>socket自动选择最好路线，并支持自动重连</p>
+<p>缓存响应数据来减少重复的网络请求</p>
+<h4 id="二、Okhttp的核心类有哪些？简单讲一下"><a href="#二、Okhttp的核心类有哪些？简单讲一下" class="headerlink" title="二、Okhttp的核心类有哪些？简单讲一下"></a>二、Okhttp的核心类有哪些？简单讲一下</h4><p>Dispatcher类：</p>
+<p>Dispatcher 通过维护一个线程池，来维护、管理、执行OKHttp的请求。<br>Dispatcher 内部维护着三个队列：同步请求队列 runningSyncCalls、异步请求队列 runningAsyncCalls、异步缓存队列 readyAsyncCalls，和一个线程池 executorService。<br>Dispatcher类整体可以参照生产者消费者模式来理解：<br>Dispatcher是生产者，executorService是消费者池，runningSyncCalls、runningAsyncCalls和readyAsyncCalls是消费者，用来消费请求Call。</p>
+<p>Interceptor类：</p>
+<p>官网：拦截器是Okhttp中提供的一种强大机制，它可以实现网络监听、请求、以及响应重写、请求失败重试等功能。<br>RetryAndFollowUpInterceptor、BridgeIntercept、CacheIntercept、ConnectIntercept、CallServerIntercept</p>
+<ul>
+<li>RetryAndFollowUpInterceptor：重试和失败重定向拦截器 </li>
+<li>BridgeInterceptor：桥接拦截器，处理一些必须的请求头信息的拦截器 </li>
+<li>CacheInterceptor：缓存拦截器，用于处理缓存 </li>
+<li>ConnectInterceptor：连接拦截器，建立可用的连接，是CallServerInterceptor的基本 </li>
+<li>CallServerInterceptor：请求服务器拦截器将 http 请求写进 IO 流当中，并且从 IO 流中读取响应 Response</li>
+</ul>
+<h4 id="三-、-原理、设计模式："><a href="#三-、-原理、设计模式：" class="headerlink" title="三 、 原理、设计模式："></a>三 、 原理、设计模式：</h4><p>Builder、责任链</p>
+<ul>
+<li>（1）、当我们通过OkhttpClient创建一个Call，并发起同步或异步请求时；</li>
+<li>（2）、okhttp会通过Dispatcher对我们所有的RealCall（Call的具体实现类）进行统一管理，并通过execute()及enqueue()方法对同步或异步请求进行处理；</li>
+<li>（3）、execute()及enqueue()这两个方法会最终调用RealCall中的getResponseWithInterceptorChain()方法，从拦截器链中获取返回结果；</li>
+<li>（4）、拦截器链中，依次通过RetryAndFollowUpInterceptor（重定向拦截器）、BridgeInterceptor（桥接拦截器）、CacheInterceptor（缓存拦截器）、ConnectInterceptor（连接拦截器）、CallServerInterceptor（网络拦截器）对请求依次处理，与服务的建立连接后，获取返回数据，再经过上述拦截器依次处理后，最后将结果返回给调用方。</li>
+</ul>
+<h3 id="2-Glide"><a href="#2-Glide" class="headerlink" title="2.Glide"></a>2.Glide</h3><h4 id="Q1：看过Glide源码吗，你印象最深的是什么？"><a href="#Q1：看过Glide源码吗，你印象最深的是什么？" class="headerlink" title="Q1：看过Glide源码吗，你印象最深的是什么？"></a>Q1：看过Glide源码吗，你印象最深的是什么？</h4><p>Glide缓存简介<br>Glide的缓存设计可以说是非常先进的，考虑的场景也很周全。在缓存这一功能上，Glide又将它分成了两个模块，一个是内存缓存，一个是硬盘缓存。</p>
+<p>这两个缓存模块的作用各不相同，内存缓存的主要作用是防止应用重复将图片数据读取到内存当中，而硬盘缓存的主要作用是防止应用重复从网络或其他地方重复下载和读取数据。</p>
+<p>内存缓存和硬盘缓存的相互结合才构成了Glide极佳的图片缓存效果，那么接下来我们就分别来分析一下这两种缓存的使用方法以及它们的实现原理。</p>
+<h4 id="Q2：简单说一下Glide的三级缓存？"><a href="#Q2：简单说一下Glide的三级缓存？" class="headerlink" title="Q2：简单说一下Glide的三级缓存？"></a>Q2：简单说一下Glide的三级缓存？</h4><p>当我们的APP中想要加载某张图片时，先去LruCache中寻找图片，如果LruCache中有，则直接取出来使用，如果LruCache中没有，则去WeakReference中寻找，如果WeakReference中有，则从WeakReference中取出图片使用，同时将图片重新放回到LruCache中，如果WeakReference中也没有图片，则去文件系统中寻找，如果有则取出来使用，同时将图片添加到LruCache中，如果没有，则连接网络从网上下载图片。图片下载完成后，将图片保存到文件系统中，然后放到LruCache中。</p>
+<h4 id="Q3：Glide加载一个一兆的图片（100100），是否会压缩后再加载，放到一个200200的view上会怎样，1000-1000呢，图片会很模糊，怎么处理？"><a href="#Q3：Glide加载一个一兆的图片（100100），是否会压缩后再加载，放到一个200200的view上会怎样，1000-1000呢，图片会很模糊，怎么处理？" class="headerlink" title="Q3：Glide加载一个一兆的图片（100100），是否会压缩后再加载，放到一个200200的view上会怎样，1000*1000呢，图片会很模糊，怎么处理？"></a>Q3：Glide加载一个一兆的图片（100<em>100），是否会压缩后再加载，放到一个200</em>200的view上会怎样，1000*1000呢，图片会很模糊，怎么处理？</h4><p>而使用Glide，我们就完全不用担心图片内存浪费，甚至是内存溢出的问题。因为Glide从来都不会直接将图片的完整尺寸全部加载到内存中，而是用多少加载多少。Glide会自动判断ImageView的大小，然后只将这么大的图片像素加载到内存当中，帮助我们节省内存开支。</p>
+<p>ImageView默认的scaleType是FIT_CENTER</p>
+<p>FitCenter的效果：会将图片按照原始的长宽比充满全屏</p>
+<p>那么，Glide将图片压缩到什么程度呢？.</p>
+<p><a href="https://blog.csdn.net/u011200604/article/details/53021685" target="_blank" rel="noopener">关于图片加载神器–Glide与Picasso的使用与比较</a></p>
+<p><a href="https://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en" target="_blank" rel="noopener">https://inthecheesefactory.com/blog/get-to-know-glide-recommended-by-google/en</a></p>
+<p>在默认情况下Picasso和Glide的外部缓存机制是非常不一样的，通过实验可以发现（1920x1080 像素的图片被加载到768x432像素的imageview中），Glide缓存的是768x432像素的图片，而Picasso缓存的是整张图片（1920x1080像素）。</p>
+<p>当我们调整imageview的大小时，Picasso会不管imageview大小是什么，总是直接缓存整张图片，而Glide就不一样了，它会为每个不同尺寸的Imageview缓存一张图片，也就是说不管你的这张图片有没有加载过，只要imageview的尺寸不一样，那么Glide就会重新加载一次，这时候，它会在加载的imageview之前从网络上重新下载，然后再缓存。</p>
+<p>防止各位不明白，再来举个例子，如果一个页面的imageview是200<em>200像素，而另一个页面中的imageview是100</em>100像素，这时候想要让两个imageview像是同一张图片，那么Glide需要下载两次图片，并且缓存两张图片。</p>
+<h4 id="Q4：Glide-缓存原理，如何设计一个大图加载框架。"><a href="#Q4：Glide-缓存原理，如何设计一个大图加载框架。" class="headerlink" title="Q4：Glide 缓存原理，如何设计一个大图加载框架。"></a>Q4：Glide 缓存原理，如何设计一个大图加载框架。</h4><p><a href="https://www.jianshu.com/p/3df395d8a6bc" target="_blank" rel="noopener">如何实现一个图片加载框架</a></p>
+<p>概括来说，图片加载包含封装，解析，下载，解码，变换，缓存，显示等操作。</p>
+<p>流程图如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/2019102310370793.png" srcset="/img/loading.gif" alt="img"></p>
+<h4 id="Q6：Glide-VS-Picasso"><a href="#Q6：Glide-VS-Picasso" class="headerlink" title="Q6：Glide VS Picasso"></a>Q6：Glide VS Picasso</h4><p>双胞胎兄弟之间的对比，使用方式相同，但 Glide 之所以胜出，不仅仅是 Google的推荐，更多应该归功于 GIF 的支持。 在没有 Glide 之前，常用的做法就是写了个自定义 view 然后 用一个 media 去播放。有了 Glide 之后几乎对于 GIF 无感知了的， 内部已经支持了的。可以像普通图片那样去加载并且显示出来动图。</p>
+<p><a href="http://lib.csdn.net/base/android" target="_blank" rel="noopener">安卓</a>图片显示的质量配置主要分为四种:</p>
+<ul>
+<li>ARGB_8888 :32位图,带透明度,每个像素占4个字节</li>
+<li>ARGB_4444 :16位图,带透明度,每个像素占2个字节</li>
+<li>RGB_565 :16位图,不带透明度,每个像素占2个字节</li>
+<li>ALPHA_8 :32位图,只有透明度,不带颜色,每个像素占4个字节</li>
+</ul>
+<p>(A代表透明度,RGB代表红绿蓝:即颜色)</p>
+<p><a href="https://www.baidu.com/s?wd=Picasso&tn=24004469_oem_dg&rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">Picasso</a>的默认质量是 ARGB_8888<br>Glide的默认质量则为 RGB_565</p>
+<p>加载一张4000 * 2000(一般<a href="https://www.baidu.com/s?wd=手机拍摄&tn=24004469_oem_dg&rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">手机拍摄</a>的都超过这个像素)的图片</p>
+<p>Picasso需要占用的内存为: 32MB</p>
+<p>4000 * 2000 * 4 / 1024 / 1024 = 30 (MB)</p>
+<p>Glide需要占用的内存为: 16MB</p>
+<p>4000 * 2000 * 2 / 1024 / 1024 = 15 (MB)</p>
+<p>也就是说只要同时加载几张图片,你的应用就会OOM(内存溢出了),最恐怖的是就算你的ImageView的宽高只有10px,同样会占用那么多内存,这就是为什么需要做图片压缩的原因了</p>
+<h4 id="Q7：Glide-VS-fresco"><a href="#Q7：Glide-VS-fresco" class="headerlink" title="Q7：Glide VS fresco"></a>Q7：Glide VS fresco</h4><p>两个都支持 GIF。所以 GIF 这一关pass掉。说到这里不得不提到一个头疼的OOM问题，fresco 之所以很快闯入大家的视线，大概就是因为 Facebook 说他们使用了 native 内存规避掉了 OutOfMemoryError 问题。而且官方还专门写了个demo，把几大流行的开源库都集成进去，为了说明自己的图片加载库加载同样的图片速度更快，内存占用更低。所以 fresco 相比较于 Glide 的（官方）优势就是这两点： 内存以及加载速度。但是我为什么依旧坚持抛弃了 fresco ?</p>
+<ol>
+<li>“ In Android 4.x and lower, Fresco puts images in a special region of Android memory. This lets your application run faster - and suffer the dreaded OutOfMemoryError much less often.” 官方的原话是这么说的，所以在高版本上面依旧使用的Java 内存，所以不可避免依旧会占用内存。</li>
+<li>提到内存，不得不说到另外一个笑话，fresco 最大只支持图片文件大小为 2M 。记得有一次帮其他团队跟踪问题，看到了 fresco 源码中有一个 最大 size 2M 常量 。于是当场找了一个10M的图片作为测试。 Glide 正常显示， fresco显示黑屏。。。</li>
+<li>使用方式上，fresco 推荐的是用他提供的 SimpleDraweeView . 这个方式意味着我们的迁移成本会非常的高，要改布局文件，其次还必须给定大小（或者比例）。 当然他也支持代码来加载图片，比如 DraweeHierarchy，但是写起来还是真心很费劲的，很不友好，改动成本居高。</li>
+<li>fresco 更多是native实现。所以需要对NDK有所了解，但个人对NDK不太了解，相比较于 Glide， 同样遇到问题之后，修改源码的成本，Glide 成本更可控。前者可能就不太好下手了的。</li>
+<li>Glide 各种 BitmapTransformation，比如圆形，圆角等，更让人喜欢。</li>
+<li>这一点就当随意吐槽一下，当然也可以说心疼一下 Facebook。因为在没有 Android studio （gradle构建）的情况下，想必大家都用的是 eclipse 吧。那么就意味着 fresco 得提供 Jar 包. 这一点当时也是把很多人拒之门外了的，可笑的是当 Facebook 费了老大劲的搞出来 jar 包之后，大家早就纷纷转战 gradle 构建工程, 直接 maven 依赖啦。大写的尴尬。</li>
+</ol>
+<h3 id="3-socket"><a href="#3-socket" class="headerlink" title="3.socket"></a>3.socket</h3><p>图片中断是怎么处理的。</p>
+<h3 id="4-listview与recyclerview"><a href="#4-listview与recyclerview" class="headerlink" title="4.listview与recyclerview"></a>4.listview与recyclerview</h3><h3 id="5-reentraint-lock"><a href="#5-reentraint-lock" class="headerlink" title="5.reentraint lock"></a>5.reentraint lock</h3><h3 id="优化："><a href="#优化：" class="headerlink" title="优化："></a>优化：</h3><h4 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h4><h4 id="卡顿优化"><a href="#卡顿优化" class="headerlink" title="卡顿优化"></a>卡顿优化</h4><p>可能会导致卡顿的原因有三大类：</p>
+<p>1）事件本身太耗时。</p>
+<p>2）事件本身并不耗时，但需要等待别的地方返回耗时。</p>
+<p>3）UI线程本身已经拿不到CPU资源来执行事件。</p>
+<p>下面根据这三大类来分别具体细聊。</p>
+<p><strong>二. 耗时事件</strong></p>
+<p>这个很容易理解，就是把一些耗时业务逻辑直接写在了UI线程中，比如计算密集型的复杂计算，庞大的MD5计算，非对称RSA解密等。一般情况下，开发人员都不会犯这种错误，因为能够直接意识到计算量很大，本身就有警醒的作用。</p>
+<p><strong>三．耗时等待</strong></p>
+<p>1）网络I/O 同步请求</p>
+<p>2）磁盘I/O 文件，数据库</p>
+<p>3）跨进程Binder同步等待返回数据</p>
+<p><strong>四．CPU时间片</strong></p>
+<p>1）其他应用发生抢占CPU资源的情况，导致本应用无法获得CPU执行时间片。</p>
+<p>2）线程间发生死锁，UI线程无法获取锁，导致无法继续执行。</p>
+<p>3）频繁GC，内存抖动。GC的次数越多，消耗在GC上的时间就越长，CPU花在界面绘制上的时间相应就越短。</p>
+<p><strong>五. 分析</strong></p>
+<p>对于卡顿的分析手段，有很多工具可以使用，下面介绍几种。</p>
+<p>1）TraceView</p>
+<p>相比之下，TraceView是分析卡顿的神兵利器，它不仅能看出每个方法消耗的时间、发生次数，并且可以进行排序，直接从最耗时的方法开始处优化。</p>
+<p>3）AndroidPerformanceMonitor</p>
+<p>AndroidPerformanceMonitor 是国人开发的一个检测卡顿的开源库，原名是BlockCanary，可以设置卡顿检测时间，debug模式下检测到的卡顿可以通知展示(基本和LeakCanary一样)，这个在开发自测时很有用。</p>
+<p>其基本原理稍有不同，它并没有采用新开线程自己往UI线程里扔runnable的这种普通思想。而是利用系统在loop()方法里取出message前后进行了log打印这一特点，来重写Printer的println(String)方法，根据message处理前后的时间差，来判断是否发生了卡顿。</p>
+<p><a href="https://blog.csdn.net/qingtiantianqing/article/details/100066873" target="_blank" rel="noopener">https://blog.csdn.net/qingtiantianqing/article/details/100066873</a></p>
+<h4 id="绘制优化"><a href="#绘制优化" class="headerlink" title="绘制优化"></a>绘制优化</h4><p>solid原则</p>
+<p>图片缩小策略。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/14/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/">
+                        <span class="hidden-mobile">数据结构与算法/排序</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">鄂ICP备2020017971号-1</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "框架原理&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 80,
+      loop: true,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
